@@ -1,0 +1,9 @@
+<!--
+One of the first game written after learning
+the basics of OOP concept during my first undergrad year.
+-->
+
+Requirements
+
+Python 2.7: https://www.python.org/download/releases/2.7/
+PyGame Lib: http://www.pygame.org/download.shtml
