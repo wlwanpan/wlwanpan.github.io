@@ -1,6 +1,6 @@
 html {
 	background: #ffffff;
-	font-family: 'Lato', sans-serif !important;
+	font-family: 'Lato', Arial;
 }
 
 body {
@@ -127,43 +127,6 @@ svg {
 
 /*****************************/
 
-
-
-
-#work li, #work p, #academics p {
-	line-height: 150%;
-}
-
-#resume-container section {
-	clear: both;
-	display: block;
-	margin: 40px 0;
-}
-
-#resume-container section:first-child {
-	margin: 0;
-}
-
-#courses li {
-	padding: 5px 0;
-}
-
-.work-experience {
-	margin: 0 0 30px 0;
-}
-
-.work-experience:last-child {
-	margin: 0;
-}
-
-.job-title {
-	margin: 10px 0;
-}
-
-.list-point {
-	width: 30px;
-}
-
 #pdf-version {
 	float: right;
 	margin-bottom: 30px;
@@ -175,25 +138,34 @@ svg {
 	margin-left: 10px;
 }
 
-.skill-section {
-	min-width: 200px;
-	margin: 0 20px 0 0;
-	display: inline-block;
-	vertical-align: top;
-}
-
-.skill-section li {
-	padding: 4px 0;
-}
-
-.skill-section > header {
-	font-size: 17px;
-	font-weight: bold;
-	margin: 0 0 10px 0;
-}
-
-li {
-	list-style: none;
-}
-
 /*************/
+
+h1 {
+	font-size: 25px;
+	font-weight: bold;
+}
+
+h2 {
+	padding-left: 0px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+a:hover {
+  background-color:#ba0018;
+  color:#fff;
+}
+
+#contactclass{
+  color:grey;
+  cursor:pointer;
+}
+ 
+#contactclass:hover .fa-envelope:after{
+  color:green;
+  opacity:0.4;
+}
+
+#col-right{
+	float: right;
+}

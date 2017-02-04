@@ -197,9 +197,9 @@ $(window).on('load', function() {
 	});
 
 	$('.menu-link').click(function() {
-		var circleAnimationTimer = 800;
-		var lineAnimationTimer = 500;
-		var timerBuffer = 300;
+		var circleAnimationTimer = 600;
+		var lineAnimationTimer = 400;
+		var timerBuffer = 100;
 		var totalAnimationTime = circleAnimationTimer + lineAnimationTimer + timerBuffer;
 
 		if (!animationInProgress) {
