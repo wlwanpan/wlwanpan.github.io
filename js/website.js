@@ -91,7 +91,7 @@ var createOppositeNode = function(r, width, height, right) {
 }
 
 var recurseAnimation = function(i, j, numCircles, timer) {
-	console.log("recurse");
+	//console.log("recurse");
 	if (i >= 0) {
 		$(".circle-opposite:eq(" + i + ")").animate({
 			opacity: 1
@@ -197,8 +197,8 @@ $(window).on('load', function() {
 	});
 
 	$('.menu-link').click(function() {
-		var circleAnimationTimer = 600;
-		var lineAnimationTimer = 400;
+		var circleAnimationTimer = 500;
+		var lineAnimationTimer = 300;
 		var timerBuffer = 100;
 		var totalAnimationTime = circleAnimationTimer + lineAnimationTimer + timerBuffer;
 

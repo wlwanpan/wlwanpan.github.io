@@ -85,7 +85,7 @@ svg {
 	width: 60%;
 	border: 0px solid black;
 	margin-left: 40px;
-	/*box-shadow: 0 2px 8px rgba(0, 0, 0, .33);*/
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
 	/*background-color: rgba(0, 0, 0, .1);*/
   	border-radius: 2px;
   	margin-bottom: 50px;
@@ -150,22 +150,7 @@ h2 {
 	font-size: 20px;
 	font-weight: bold;
 }
-
-a:hover {
-  background-color:#ba0018;
-  color:#fff;
-}
-
-#contactclass{
-  color:grey;
-  cursor:pointer;
-}
  
-#contactclass:hover .fa-envelope:after{
-  color:green;
-  opacity:0.4;
-}
-
-#col-right{
-	float: right;
+.contact-container:hover .fa {
+	color: blue;
 }
