@@ -11,6 +11,14 @@ a {
 	color: black;
 }
 
+p {
+	font-family: Arial;
+}
+
+div{
+
+}
+
 svg {
 
 }
@@ -85,9 +93,9 @@ svg {
 	width: 60%;
 	border: 0px solid black;
 	margin-left: 40px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-	/*background-color: rgba(0, 0, 0, .1);*/
-  	border-radius: 2px;
+	/*box-shadow: 0 2px 8px rgba(0, 0, 0, .33);*/
+	background-color: rgba(0, 0, 0, .02);
+  	/*border-radius: 2px;*/
   	margin-bottom: 50px;
   	overflow: hidden;
   	height: 0;
@@ -121,8 +129,10 @@ svg {
 	}
 }
 
-@media only screen and (min-width: 0px) and (max-width: 679px) {
-
+@media only screen and (max-width: 1050px) {
+	.label-container {
+		visibility: 'hidden';
+	}
 }
 
 /*****************************/
@@ -150,7 +160,61 @@ h2 {
 	font-size: 20px;
 	font-weight: bold;
 }
- 
-.contact-container:hover .fa {
-	color: blue;
+
+/******************/
+
+.social-container {
+
+	position: relative;
+	padding-left: 10px;
+	width: 40%;
+	margin-top: 0%;
+	float: left;
+	height: 500px;
 }
+
+.social-container p{
+
+	font-family: 'Pangolin', cursive;
+	margin-left: 10%;
+	line-height: 50px;
+	vertical-align: middle;
+	font-size: 16px; 
+}
+
+.icon-wrapper {
+
+	width: 80%; 
+	height: 60px;
+
+}
+
+.left-icon {
+	margin-left:20px;
+}
+
+.icon {
+	display: inline-block;
+	height:50px; 
+	width:17.5%; 
+	float:left;
+}
+
+.label {
+	height: 50px;
+	width: 80%; 
+	display: inline-block; 
+	float:left;
+}
+
+
+.portrait-container {
+
+	border: 1px solid black;
+	float: right;
+	display: incline-block;
+	width: 59%;
+	height: 50%;
+}
+
+

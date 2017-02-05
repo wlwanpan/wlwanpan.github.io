@@ -197,7 +197,7 @@ $(window).on('load', function() {
 	});
 
 	$('.menu-link').click(function() {
-		var circleAnimationTimer = 500;
+		var circleAnimationTimer = 400;
 		var lineAnimationTimer = 300;
 		var timerBuffer = 100;
 		var totalAnimationTime = circleAnimationTimer + lineAnimationTimer + timerBuffer;
@@ -233,6 +233,7 @@ $(window).on('load', function() {
 			// set opacity of circles to 0
 			$('.circle-opposite').css('opacity', 0);
 			$('.content-line').css('opacity', 0);
+			$('.content-line').css('width', 100);
 
 			$(".circle-opposite:eq(" + index + ")").animate(
 			{ opacity: 1}, 100, function() {
@@ -276,6 +277,19 @@ $(window).resize(function() {
 	});
 
 	// recreate branch from list element to content
+
+	if ($(this).width() < 1057) {
+
+    	$('.label').hide();
+    	$('.content').css('display', 'incline');
+    	$('.content').css('margin-left', 1);
+
+  	} else {
+
+    	$('.label').show();
+    	$('.content').css('margin-left', 40);
+
+    }
 });
 
 
