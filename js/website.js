@@ -267,7 +267,7 @@ $(window).on('load', function() {
 
 			$('#content').filter(":not(:animated)").animate({
 			   height: 20
-			}, 200, function(){
+			}, 100, function(){
 			    $('#content').animate({
 			    	//height: $('#content').get(0).scrollHeight
 			    	height: ContentHeight
