@@ -112,7 +112,7 @@ var loadContent = function(fileName) {
 	if (fileName == 'includes/home.html') {ContentHeight = 72;} 
 	else if (fileName == 'includes/resume.html') {ContentHeight = 1000;} 
 	else if (fileName == 'includes/projects.html') {ContentHeight = 73;} 
-	else if (fileName == 'includes/contact.html') {ContentHeight = 500;}
+	else if (fileName == 'includes/contact.html') {ContentHeight = 550;}
 
 	if(!animationInProgress) {
 		$.ajax({
