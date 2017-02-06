@@ -106,8 +106,14 @@ var recurseAnimation = function(i, j, numCircles, timer) {
 		if (i - 1 >= 0 || j < numCircles) recurseAnimation(i-1, j+1, numCircles, timer);
 	}, timer);
 }
-
+var ContentHeight = 0;
 var loadContent = function(fileName) {
+
+	if (fileName == 'includes/home.html') {ContentHeight = 72;} 
+	else if (fileName == 'includes/resume.html') {ContentHeight = 1000;} 
+	else if (fileName == 'includes/projects.html') {ContentHeight = 73;} 
+	else if (fileName == 'includes/contact.html') {ContentHeight = 500;}
+
 	if(!animationInProgress) {
 		$.ajax({
 		    url: fileName,
@@ -258,11 +264,13 @@ $(window).on('load', function() {
 				animationInProgress = false;
 			}, totalAnimationTime);
 
+
 			$('#content').filter(":not(:animated)").animate({
-			    height: 20
-			}, 100, function(){
+			   height: 20
+			}, 200, function(){
 			    $('#content').animate({
-			    	height: $('#content').get(0).scrollHeight
+			    	//height: $('#content').get(0).scrollHeight
+			    	height: ContentHeight
 			    }, circleAnimationTimer + lineAnimationTimer);
 			});
 		}
@@ -275,10 +283,10 @@ $(window).on('load', function() {
 $(window).resize(function() {
 
 	// change position of list elements on window resize
-	//var pos = $('.right').first().position();
-	//$('.menu-link').each(function() {
-	//	$(this).css({'left': pos.left + (2 * circleRadius) + branchLength + menuPositionPadding});
-	//});
+	var pos = $('.right').first().position();
+	$('.menu-link').each(function() {
+		$(this).css({'left': pos.left + (2 * circleRadius) + branchLength + menuPositionPadding});
+	});
 
 	// recreate branch from list element to content
 
