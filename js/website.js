@@ -114,7 +114,7 @@ var loadContent = function(fileName) {
 		    cache: false,
 		    dataType: "html",
 		    success: function(data) {
-		        $("#content-text").html(data);
+		        $("#content").html(data);
 		    }
 		});
 	}
@@ -127,6 +127,10 @@ var animationTimer = 100;
 var animationInProgress = false;
 
 $(window).on('load', function() {
+
+	//$('main-background-container').css('height', window.innerHeight);
+	$('container').css('height', window.innerHeight);
+
 	var navPos = $('#nav').position();
 	var navLeft = navPos.left;
 	var navTop = navPos.top;
@@ -177,7 +181,7 @@ $(window).on('load', function() {
 		$(this).css({'left': menuLeft, 'top': $(this).position().top - (firstMenuButton.outerHeight() / 2) + circleRadius});
 	});
 
-	// set height of line containers 
+	//set height of line containers 
 	$('.line').each(function() {
 		$(this).attr('height', $('#nav').height());
 	});
@@ -198,7 +202,7 @@ $(window).on('load', function() {
 
 	$('.menu-link').click(function() {
 		var circleAnimationTimer = 400;
-		var lineAnimationTimer = 300;
+		var lineAnimationTimer = 700;
 		var timerBuffer = 100;
 		var totalAnimationTime = circleAnimationTimer + lineAnimationTimer + timerBuffer;
 
@@ -271,22 +275,22 @@ $(window).on('load', function() {
 $(window).resize(function() {
 
 	// change position of list elements on window resize
-	var pos = $('.right').first().position();
-	$('.menu-link').each(function() {
-		$(this).css({'left': pos.left + (2 * circleRadius) + branchLength + menuPositionPadding});
-	});
+	//var pos = $('.right').first().position();
+	//$('.menu-link').each(function() {
+	//	$(this).css({'left': pos.left + (2 * circleRadius) + branchLength + menuPositionPadding});
+	//});
 
 	// recreate branch from list element to content
 
 	if ($(this).width() < 1057) {
 
     	$('.label').hide();
-    	$('.content').css('display', 'incline');
-    	$('.content').css('margin-left', 1);
+    	$('.portrait-container').hide();
 
   	} else {
 
     	$('.label').show();
+    	$('.portrait-container').show();
     	$('.content').css('margin-left', 40);
 
     }
