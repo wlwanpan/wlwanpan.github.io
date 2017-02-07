@@ -17,8 +17,9 @@ div{
 	/*border: 1px solid black;*/
 }
 h1 {
-	font-family: 'Pangolin', cursive;
-	font-size: 25px;
+	/*font-family: 'Pangolin', cursive;*/
+	font-family: 'Francois One', sans-serif;
+	font-size: 30px;
 	font-weight: bold;
 }
 h2 {
