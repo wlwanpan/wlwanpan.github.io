@@ -15,7 +15,6 @@ var createLine = function(x1, y1, x2, y2, color='black', w=2, branch=false) {
 
     return svg;
 }	
-
 // used for drawing lines from circle to circle
 var drawLinesBetweenCircles = function(className, circleRadius, parentId) {
 	var positions = [];
@@ -268,7 +267,7 @@ $(window).on('load', function() {
 
 			$('#content').filter(":not(:animated)").animate({
 			   height: 20
-			}, 0, function(){
+			}, 100, function(){
 			    $('#content').animate({
 			    	//height: $('#content').get(0).scrollHeight
 			    	height: ContentHeight
