@@ -133,7 +133,7 @@ var animationInProgress = false;
 
 $(window).on('load', function() {
 
-	console.log(window.innerHeight);
+	$('.btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
 	$('#container').css('height', window.innerHeight);
 
@@ -303,6 +303,5 @@ $(window).resize(function() {
 
     }
 });
-
 
 
