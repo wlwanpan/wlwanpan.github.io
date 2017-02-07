@@ -110,7 +110,7 @@ var ContentHeight = 0;
 var loadContent = function(fileName) {
 
 	if (fileName == 'includes/home.html') {ContentHeight = 72;} 
-	else if (fileName == 'includes/resume.html') {ContentHeight = 1000;} 
+	else if (fileName == 'includes/resume.html') {ContentHeight = 567;} 
 	else if (fileName == 'includes/projects.html') {ContentHeight = 73;} 
 	else if (fileName == 'includes/contact.html') {ContentHeight = 550;}
 
@@ -134,8 +134,9 @@ var animationInProgress = false;
 
 $(window).on('load', function() {
 
-	//$('main-background-container').css('height', window.innerHeight);
-	$('container').css('height', window.innerHeight);
+	console.log(window.innerHeight);
+	$('#main-background-container').css('height', window.innerHeight);
+	$('#container').css('height', window.innerHeight);
 
 	var navPos = $('#nav').position();
 	var navLeft = navPos.left;
@@ -178,14 +179,14 @@ $(window).on('load', function() {
 	$('.circle-opposite').css('opacity', 0);
 	$('.content-line').css('opacity', 0);
 
-	var firstMenuCirclePos = $(".circle:eq(1)").position();
-	var firstMenuButton = $(".menu-element:eq(0)");
-	var menuLeft = firstMenuCirclePos.left + (2 * circleRadius) + branchLength + menuPositionPadding;
+	//var firstMenuCirclePos = $(".circle:eq(1)").position();
+	//var firstMenuButton = $(".menu-element:eq(0)");
+	//var menuLeft = firstMenuCirclePos.left + (2 * circleRadius) + branchLength + menuPositionPadding;
 
 	// change position of list elements (anchors)
-	$('.menu-link').each(function() {
-		$(this).css({'left': menuLeft, 'top': $(this).position().top - (firstMenuButton.outerHeight() / 2) + circleRadius});
-	});
+	//$('.menu-link').each(function() {
+	//	$(this).css({'left': menuLeft, 'top': $(this).position().top - (firstMenuButton.outerHeight() / 2) + circleRadius});
+	//});
 
 	//set height of line containers 
 	$('.line').each(function() {
@@ -243,7 +244,7 @@ $(window).on('load', function() {
 			// set opacity of circles to 0
 			$('.circle-opposite').css('opacity', 0);
 			$('.content-line').css('opacity', 0);
-			$('.content-line').css('width', 100);
+			$('.content-line').css('width', 60);
 
 			$(".circle-opposite:eq(" + index + ")").animate(
 			{ opacity: 1}, 100, function() {
@@ -267,7 +268,7 @@ $(window).on('load', function() {
 
 			$('#content').filter(":not(:animated)").animate({
 			   height: 20
-			}, 100, function(){
+			}, 0, function(){
 			    $('#content').animate({
 			    	//height: $('#content').get(0).scrollHeight
 			    	height: ContentHeight
@@ -290,16 +291,16 @@ $(window).resize(function() {
 
 	// recreate branch from list element to content
 
-	if ($(this).width() < 1057) {
+	if ($(this).width() < 1024) {
 
     	$('.label').hide();
     	$('.portrait-container').hide();
+    	//$('.main-content-wrapper').css('float', 'right');
 
   	} else {
 
     	$('.label').show();
     	$('.portrait-container').show();
-    	$('.content').css('margin-left', 40);
 
     }
 });
