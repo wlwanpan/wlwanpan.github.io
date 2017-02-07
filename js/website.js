@@ -105,7 +105,7 @@ var recurseAnimation = function(i, j, numCircles, timer) {
 		if (i - 1 >= 0 || j < numCircles) recurseAnimation(i-1, j+1, numCircles, timer);
 	}, timer);
 }
-var ContentHeight = 0;
+var ContentHeight = 20;
 var loadContent = function(fileName) {
 
 	if (fileName == 'includes/home.html') {ContentHeight = 72;} 
@@ -194,15 +194,19 @@ $(window).on('load', function() {
 
 	// load content dynamically
 	$('#home').click(function() {
+
 		loadContent('includes/home.html');
 	});
 	$('#resume').click(function() {
+
 		loadContent('includes/resume.html');
 	});
 	$('#projects').click(function() {
+
 		loadContent('includes/projects.html');
 	});
 	$('#contact').click(function() {
+
 		loadContent('includes/contact.html');
 	});
 
