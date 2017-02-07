@@ -279,9 +279,9 @@ $(window).on('load', function() {
 	$("#home").trigger('click');
 });
 
-
 $(window).resize(function() {
 
+	$('#main-background-container').css('height', window.innerHeight);
 	// change position of list elements on window resize
 	var pos = $('.right').first().position();
 	$('.menu-link').each(function() {
