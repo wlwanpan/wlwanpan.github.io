@@ -63,9 +63,11 @@ svg {
 
 #nav-wrapper {
 
+	display: inline-block;
 	width: 300px;
 	height: 360px;
-	border: 1px solid green;
+	float: left;
+	/*border: 1px solid green;*/
 
 }
 #nav {
@@ -139,7 +141,7 @@ svg {
 	position: relative;
 	display: inline-block;
 	float: right;
-	width: 70%;
+	width: 75%;
 	margin-left: 0%;
 	/*align-items: center;*/
 	/*padding: 10px;*/
@@ -192,9 +194,9 @@ svg {
 .main-content-wrapper {
 
 	/*position: relative;*/
-	width: 43%;
+	width: 44.5%;
 	/*height: 390px;*/
-	padding-left: 10px;
+	/*padding-left: 10px;*/
 	/*margin-top: 10%;*/
 	float: left;
 	/*display: inline-block;*/
@@ -248,8 +250,9 @@ svg {
 	float: right;
 	width: 55%;
 	height: 550px;
-	background-image: url('../background/portrait.png');
-	background-position: 25% 25%;
+	background-image: url('../background/me.png');
+	background-size: cover;
+	background-position: 0% 80%;
 
 }
 /* ------RESUME------ */
