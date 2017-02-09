@@ -1,0 +1,21 @@
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+
+
+/* Medium Screen -----------------*/
+@media only screen and (max-width: 900px) {
+    #portrait-container {
+        display: none;
+    }
+    #main-content-wrapper {
+    	display: inline;
+    }
+    #resume-wrapper {
+    	width: 100%;
+    	padding: 5px;
+    }
+}

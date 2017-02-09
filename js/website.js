@@ -210,24 +210,8 @@ $(window).on('load', function() {
 	$("#home").trigger('click');
 });
 
-$(window).resize(function() {
-
+$(window).resize(function () {
+	
 	$('#main-background-container').css('height', window.innerHeight);
 
-	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
-    	// Take the user to a different screen here.
-	}
-	else if ($(this).width() < 900) {
-
-    	$('#portrait-container').hide();
-
-    	//$('#main-content-wrapper').css('margin', '0 auto');
-    	//$('#container').css('align-items', 'stretch');
-
-  	} else {
-
-    	$('.portrait-container').show();
-
-
-    }
 });
