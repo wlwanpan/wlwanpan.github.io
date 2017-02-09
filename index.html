@@ -18,49 +18,39 @@
 
 	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
 	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.velocity.js"></script>
 	<script src="js/website.js"></script>
+
+	<script type="text/javascript">
+	var window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+	var window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
+
+	</script>
+	
 </head>
 <body>
 	<div id="main-background-container">
 		<div id="container">
 			
-			<div id="nav-wrapper">
+			<div id="menu-wrapper">
 
-				<div id="nav">
 
-					<div class="circle-wrapper"><svg class="circle"><circle fill="black" /></svg></div>
+				<svg id="left-ctx">
+					
+				</svg>
 
-					<div class="circle-wrapper">
-						<svg class="circle right"><circle fill="black" /></svg>
-						<a href='#'><button id="home" class="btn-1 btn-1f menu-link menu-element">HOME</button></a>
-					</div>
 
-					<div class="circle-wrapper"><svg class="circle"><circle fill="black" /></svg></div>
-
-					<div class="circle-wrapper">
-						<svg class="circle right"><circle fill="black" /></svg>
-						<a href='#'><button id="resume" class="btn-1 btn-1f menu-link menu-element">RESUME</button></a>
-					</div>
-
-					<div class="circle-wrapper"><svg class="circle"><circle fill="black" /></svg></div>
-
-					<div class="circle-wrapper">
-						<svg class="circle right"><circle fill="black" /></svg>
-						<a href='#'><button id="projects" class="btn-1 btn-1f menu-link menu-element">PROJECT</button></a>
-					</div>
-
-					<div class="circle-wrapper"><svg class="circle"><circle fill="black" /></svg></div>
-
-					<div class="circle-wrapper">
-						<svg class="circle right"><circle fill="black" /></svg>
-						<a href='#'><button id="contact" class="btn-1 btn-1f menu-link menu-element">CONTACT</button></a>
-					</div>
-
-					<div class="circle-wrapper"><svg class="circle"><circle fill="black" /></svg></div>
-
+				<div id="button-container">
+					<a href='#'><button id="home" class="btn-1 btn-1f menu-link menu-element">HOME</button></a>
+					<a href='#'><button id="resume" class="btn-1 btn-1f menu-link menu-element">RESUME</button></a>
+					<a href='#'><button id="projects" class="btn-1 btn-1f menu-link menu-element">PROJECT</button></a>
+					<a href='#'><button id="contact" class="btn-1 btn-1f menu-link menu-element">CONTACT</button></a>
 				</div>
 
-				<div id="opposite-nav"></div>
+				<svg id="right-ctx">
+
+				</svg>
 
 			</div>
 			

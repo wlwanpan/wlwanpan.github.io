@@ -27,9 +27,7 @@ h2 {
 	font-size: 20px;
 	font-weight: bold;
 }
-svg {
 
-}
 .btn-1{
 	display: none;
 }
@@ -56,71 +54,62 @@ svg {
     align-items: center;
 
 	margin: 0 auto;
+	overflow: scroll;
 	/*padding: 1.5%;*/
 	
 }
 
 /***** NAVIGATION *****/
 
-#nav-wrapper {
+#menu-wrapper {
 
-	display: inline-block;
+	align-items: center;
 	width: 300px;
 	height: 360px;
 	float: left;
 	/*border: 1px solid green;*/
+	/*
+	-webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);*/
 
 }
-#nav {
+#left-ctx {
 
-  	position: fixed; /* or absolute */
-  	top: 22%;
-  	left: 80px;
-
-	border: 0px solid red;
-	width: 224px;
-
-}
-#opposite-nav {
-
-	position: fixed; /* or absolute */
-  	top: 22%;
-  	left: 300px;
-	width: 60px;
-
-}
-.circle-wrapper {
+	width: 90px;
+	height: 360px;
 	/*border: 1px solid green;*/
-	width: 60px;
-	margin-bottom: 10px;
-	background: none;
+	float: left;
 }
-.circle {
-	/*opacity: 0.25;*/
+#button-container {
+	float: left;
+	margin-left: 3px;
+	width: 100px;
+	height: 360px;
+	display: inline-block;
 }
-.right {
+#right-ctx {
 
+	width: 90px;
+	height: 360px;
+	/*border: 1px solid red;*/
 	float: right;
 
 }
-.line, .height {
-
-	position: absolute;
-	/*border: 0px solid green;*/
-	/*opacity: 0.25;*/
+.line {
+	opacity: 0;
 }
-.branch {
-	/*height: 100%;*/
+.circle {
+	opacity: 0;
+	/*display: none;*/
 }
 .menu-link {
 	/*position: relative;*/
 }
 .menu-element {
 
-	/*display: flex;*/
-	position: fixed !important;
-	/*top: 10% !important;*/
-	left: 170px;
 	width: 100px !important;
 	height: 35px !important;
 
@@ -148,48 +137,6 @@ svg {
 	/*padding: 10px;*/
 }
 
-/***********************/
-
-
-/******* MEDIA QUERIES *******/
-
-@media only screen and (max-width: 1050px) {
-	#container {
-		width: 850px;
-	}
-}
-
-@media only screen and (max-width: 900px) {
-	#container {
-		width: 800px;
-	}
-}
-
-@media only screen and (max-width: 850px) {
-	#container {
-		width: 725px;
-	}
-}
-
-@media only screen and (max-width: 1024x) {
-	.label-container {
-		visibility: 'hidden';
-	}
-}
-
-/*****************************/
-
-#pdf-version {
-	float: right;
-	margin-bottom: 30px;
-	width: 270px;
-	text-align: center;
-}
-
-#pdf-version > span {
-	margin-left: 10px;
-}
-/******************/
 
 /*----- CONTACT -----*/
 .main-content-wrapper {
@@ -250,10 +197,10 @@ svg {
 	display: inline-block;
 	float: right;
 	width: 55%;
-	height: 550px;
+	height: 500px;
 	background-image: url('../background/me.png');
 	background-size: cover;
-	background-position: 0% 80%;
+	background-position: 0% 50%;
 
 }
 /* ------RESUME------ */

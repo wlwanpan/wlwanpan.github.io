@@ -1,307 +1,217 @@
-var createLine = function(x1, y1, x2, y2, color='black', w=2, branch=false) {
-	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	var className = branch ? 'line branch' : 'line';
-	svg.setAttribute('class', className);
-	svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
 
-	var aLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    aLine.setAttribute('x1', x1);
-    aLine.setAttribute('y1', y1);
-    aLine.setAttribute('x2', x2);
-    aLine.setAttribute('y2', y2);
-    aLine.setAttribute('stroke', color);
-    aLine.setAttribute('stroke-width', w);
-    svg.appendChild(aLine);
+var CircleAnimation = function () {
 
-    return svg;
-}	
-// used for drawing lines from circle to circle
-var drawLinesBetweenCircles = function(className, circleRadius, parentId) {
-	var positions = [];
-	var parentPos = $('#' + parentId).position();
-	var parentLeft = parentPos.left;
-	var parentTop = parentPos.top;
+	var self = {
 
-	$(className).each(function(index) {
-		var pos = $(this).position();
+		menuposn : [],
+		menu : ['#home', '#resume', '#projects', '#contact'],
+		left_ctx : document.getElementById("left-ctx"),
+		right_ctx : document.getElementById("right-ctx"),
+		radius : 15,
+		x_margin : 35,
+		y_margin : 40,
+		Lx : 15,
+		Rx : 75,
+		OngoingAnimation : null,
 
-		positions.push({x: pos.left + circleRadius - parentLeft, y:pos.top + circleRadius - parentTop});
-	});
-
-	// draw lines
-	if (positions.length > 1) {
-		for (var i = 0; i < positions.length-1; i++) {
-			var svg = createLine(positions[i].x, positions[i].y, positions[i+1].x, positions[i+1].y, 'black', 5);
-			// add at the beginning of div
-		    var nav = document.getElementById(parentId);
-		    nav.insertBefore(svg, nav.firstChild);
-		}
 	}
-}
+	self.LoadCircle = function () {
 
-var drawMenuElementBranches = function(className, circleRadius, parentId='nav') {
-	var positions = [];
-	var parentPos = $('#' + parentId).position();
-	var parentLeft = parentPos.left;
-	var parentTop = parentPos.top;
+		for (var i = 0; i < 9; i++) {
 
-	$(className).each(function(index) {
-		var pos = $(this).position();
+			var y = (i * self.y_margin) + 20;
+			var Lx = 15;
+			var Rx = 75;
 
-		positions.push({x: pos.left + circleRadius - parentLeft, y:pos.top + circleRadius - parentTop});
-	});
-
-	// draw lines
-	if (positions.length > 1) {
-		for (var i = 0; i < positions.length-1; i++) {
-			// branch line
-			if ((i+1) % 2 === 0) {
-				var svg = createLine(positions[i].x, positions[i].y, positions[i].x + circleRadius + branchLength, positions[i].y, 'black', 5);
-				// add at the beginning of div
-			    var nav = document.getElementById(parentId);
-			    nav.insertBefore(svg, nav.firstChild);
+			if (i % 2 == 1) {
+				Lx += self.x_margin;
+				Rx -= self.x_margin;
+				self.menuposn.push(y);
 			}
+			var cL = self.CreateCircle(Lx, y, self.radius, 'L'+i);
+			var cR = self.CreateCircle(Rx, y, self.radius, 'R'+i);
+
+			self.left_ctx.appendChild(cL);
+			self.right_ctx.appendChild(cR);
 		}
 	}
-}
+	self.CreateBranch = function (q, i) {
 
-var createOppositeNode = function(r, width, height, right) {
-	var div = document.createElement('div');
-	div.className = 'circle-wrapper';
-	div.setAttribute('style', 'height: ' + height + 'px');
+		var sx = $(q + i).attr('cx');
+		var sy = $(q + i).attr('cy');
 
-	var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	var className = right ? 'circle-opposite right' : 'circle-opposite';
-	svg.setAttribute('class', className);
-	svg.setAttributeNS("http://www.w3.org/2000/xmlns/", "xmlns:xlink", "http://www.w3.org/1999/xlink");
-	svg.setAttribute('width', width);
-	svg.setAttribute('height', height);
+		var ex = $(q + (i+1)).attr('cx');
+		var ey = $(q + (i+1)).attr('cy');
 
-	var aCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    aCircle.setAttribute('cx', r);
-    aCircle.setAttribute('cy', r);
-    aCircle.setAttribute('r', r);
-    aCircle.setAttribute('fill', 'black');
-    svg.appendChild(aCircle);
-    div.appendChild(svg);
+		var l = self.CreateLine(sx, sy, ex, ey, 6, q.substring(1) +"L"+i);
 
-    var oppositeNav = document.getElementById('opposite-nav');
-    oppositeNav.appendChild(div);
-}
-
-var recurseAnimation = function(i, j, numCircles, timer) {
-	//console.log("recurse");
-	if (i >= 0) {
-		$(".circle-opposite:eq(" + i + ")").animate({
-			opacity: 1
-		}, timer);
+		if (q == "#L") {self.left_ctx.appendChild(l);} 
+		else if (q == "#R") {self.right_ctx.appendChild(l);}
 	}
-	if (j < numCircles) {
-		$(".circle-opposite:eq(" + j + ")").animate({
-			opacity: 1
-		}, timer);
+	self.LoadBranch = function () {
+		
+		for (var i = 0; i < 8; i++) {
+			self.CreateBranch("#L", i);
+			self.CreateBranch("#R", i);
+				
+		}
 	}
-	setTimeout(function() {
-		if (i - 1 >= 0 || j < numCircles) recurseAnimation(i-1, j+1, numCircles, timer);
-	}, timer);
-}
-var ContentHeight = 20;
-var loadContent = function(fileName) {
-	$("#content").empty();
-	if (fileName == 'includes/home.html') {ContentHeight = 72;} 
-	else if (fileName == 'includes/resume.html') {ContentHeight = 567;} 
-	else if (fileName == 'includes/projects.html') {ContentHeight = 73;} 
-	else if (fileName == 'includes/contact.html') {ContentHeight = 550;}
+	self.CreateLine = function(sx, sy, ex, ey, w, id){
+		var line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+	    line.setAttribute('x1', sx);
+	    line.setAttribute('y1', sy);
+	    line.setAttribute('x2', ex);
+	    line.setAttribute('y2', ey);
+	    line.setAttribute('class', 'line');
+	    line.setAttribute('id', id);
+	    line.setAttribute('stroke', 'black');
+	    line.setAttribute('stroke-width', w);
+	    return line;	
+	}
+	self.CreateCircle = function(x, y, r, id) {
+		
+		var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+	    circle.setAttribute('cx', x);
+	    circle.setAttribute('cy', y);
+	    circle.setAttribute('r', r);
+	    circle.setAttribute('class', 'circle');
+	    circle.setAttribute('id', id);
+	    circle.setAttribute('fill', 'black');
+	    return circle;
 
-	if(!animationInProgress) {
+	}
+	self.recurseAnimation = function(i, j, timer) {
+
+		if (i >= 0) {
+
+			$("#L" + i).velocity({opacity: 1}, {
+				duration : timer, 
+				complete : function () {
+					$("#LL" + i).velocity({opacity: 1}, timer/2);
+				}
+			});
+
+			$("#R" + i).velocity({opacity: 1}, {
+				duration : timer, 
+				complete : function () {
+					$("#RL" + i).velocity({opacity: 1}, timer/2);
+				}
+			});
+
+		}
+		if (j < 9) {
+
+			$("#L" + j).velocity({opacity: 1}, {
+				duration : timer, 
+				complete : function () {
+					$("#LL" + (j-1)).velocity({opacity: 1}, timer/2);
+				}
+			});
+
+			$("#R" + j).velocity({opacity: 1}, {
+				duration : timer, 
+				complete : function () {
+					$("#RL" + (j-1)).velocity({opacity: 1}, timer/2);
+				}
+			});
+
+		}
+
+		setTimeout(function() {
+			if (i - 1 >= 0 || j < 9) {
+				self.OngoingAnimation = window.requestAnimationFrame(function () {self.recurseAnimation(i-1, j+1, timer);});
+			};
+		}, timer);
+
+	}
+	self.AnimationWrapper = function(index) {
+
+		timer = 100;
+
+		$("#L" + index).animate({opacity: 1}, timer);
+		$("#R" + index).animate({opacity: 1}, timer);
+
+		setTimeout(function () {
+			self.OngoingAnimation = window.requestAnimationFrame(function () {self.recurseAnimation(index-1, index+1, timer);});
+		}, timer);
+		self.OngoingAnimation = null;
+		return false;
+	}
+
+	self.LoadCircle();
+	self.LoadBranch();
+	return self;
+}
+
+var loadContent = function(click, CircleObj) {
+
+	$(':button').prop('disabled', true);
+	$('.circle').css('opacity', 0);
+	$('.line').css('opacity', 0);
+
+	var AnimationBufferDelay = 600;
+	var circles = [1, 3, 5, 7];
+	CircleObj.AnimationWrapper(circles[click]);
+
+	if (CircleObj.OngoingAnimation == null) {
+		$("#content").empty();
+
+		var CurrentSelectObj = $( ".selected" )[0] || null;
+		var MenuSelect = CircleObj.menu[click];
+		var file = ('includes/' + MenuSelect.substring(1) + '.html');
+ 
+		if (CurrentSelectObj) {$(CurrentSelectObj).removeClass('selected');}
+
+		$(MenuSelect).addClass('selected');
+
 		$.ajax({
-		    url: fileName,
+		    url: file,
 		    cache: false,
 		    dataType: "html",
 		    success: function(data) {
 		        $("#content").html(data);
 		    }
 		});
+
+		$('#content').filter(":not(:animated)").animate({
+			   height: 20
+			}, 100, function(){
+			$('#content').animate({
+				//height: ContentHeight
+				height: $('#content').get(0).scrollHeight
+			}, 500);
+		});
 	}
+	setTimeout(function () {
+		$(':button').prop('disabled', false);
+	}, AnimationBufferDelay);
 }
 
-var circleRadius = 15;
-var branchLength = 20;
-var menuPositionPadding = 10;
-var animationTimer = 100;
-var animationInProgress = false;
-
 $(window).on('load', function() {
+
+	var CircleAnimationObj = new CircleAnimation();
+
+	$( ".menu-element" ).each(function(index, element) {
+  		$(this).css('top', CircleAnimationObj.menuposn[index]/1.68);
+	});
 
 	$('.btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
 	$('#container').css('height', window.innerHeight);
 
-	var navPos = $('#nav').position();
-	var navLeft = navPos.left;
-	var navTop = navPos.top;
+	$('#home').click(function(event) {loadContent(0, CircleAnimationObj);});
+	$('#resume').click(function(event) {loadContent(1, CircleAnimationObj);});
+	$('#projects').click(function(event) {loadContent(2, CircleAnimationObj);});
+	$('#contact').click(function(event) {loadContent(3, CircleAnimationObj);});
 
-	// set size of circles
-	$('circle').each(function() {
-		$(this).attr('r', circleRadius);
-		$(this).attr('cx', circleRadius);
-		$(this).attr('cy', circleRadius);
-	});
 
-	// set height of wrapper
-	$('.circle-wrapper').each(function(index) {
-		$(this).css('height', circleRadius * 2);
-
-		// create its opposite node
-		var right = (index % 2) === 0;
-		createOppositeNode(circleRadius, circleRadius * 2, circleRadius * 2, right);
-	});
-
-	// set width and height of circles 
-	$('.circle').each(function() {
-		$(this).attr('width', circleRadius * 2);
-		$(this).attr('height', circleRadius * 2);
-	});
-
-	// drawing lines
-	drawLinesBetweenCircles('.circle', circleRadius, 'nav');
-	drawLinesBetweenCircles('.circle-opposite', circleRadius, 'opposite-nav');
-	drawMenuElementBranches('.circle', circleRadius);
-
-	// add className to content lines
-	$('#opposite-nav').find('.line').each(function() {
-		$(this).addClass('content-line');
-	})
-
-	// set opacity to 0
-	$(".selected-branch").css('opacity', 0);
-	$('.circle-opposite').css('opacity', 0);
-	$('.content-line').css('opacity', 0);
-
-	//var firstMenuCirclePos = $(".circle:eq(1)").position();
-	//var firstMenuButton = $(".menu-element:eq(0)");
-	//var menuLeft = firstMenuCirclePos.left + (2 * circleRadius) + branchLength + menuPositionPadding;
-
-	// change position of list elements (anchors)
-	//$('.menu-link').each(function() {
-	//	$(this).css({'left': menuLeft, 'top': $(this).position().top - (firstMenuButton.outerHeight() / 2) + circleRadius});
-	//});
 
 	//set height of line containers 
 	$('.line').each(function() {
 		$(this).attr('height', $('#nav').height());
 	});
 
-	// load content dynamically
-	$('#home').click(function() {
-		loadContent('includes/home.html');
-	});
-	$('#resume').click(function() {
-		loadContent('includes/resume.html');
-	});
-	$('#projects').click(function() {
-		loadContent('includes/projects.html');
-	});
-	$('#contact').click(function() {
-		loadContent('includes/contact.html');
-	});
-
-	$('.menu-link').click(function() {
-		var circleAnimationTimer = 400;
-		var lineAnimationTimer = 700;
-		var timerBuffer = 100;
-		var totalAnimationTime = circleAnimationTimer + lineAnimationTimer + timerBuffer;
-
-		if (!animationInProgress) {
-
-			// set flag to true
-			animationInProgress = true;
-
-			// change style of selected menu
-			$('.menu-link').removeClass('selected');
-			$(this).addClass('selected');
-
-			var pos = $(this).position();
-			var menuWidth = $(this).outerWidth();
-			var menuHeight = $(this).outerHeight();
-			var index = ($('.menu-link').index(this) * 2) + 1;
-			var numCircles = $('.circle-opposite').length;
-			var correspondingCircle = $(".circle-opposite:eq(" + index + ")").position();
-
-			// remove old branch and add new branch from element to content
-			$(".branch").remove();
-			var svg = createLine(pos.left - navLeft + menuWidth + menuPositionPadding, 
-					   pos.top - navTop + menuHeight / 2,
-					   correspondingCircle.left - navLeft + circleRadius,
-					   pos.top - navTop + menuHeight / 2,
-					   'black', 5, true);
-			svg.style.opacity = 0;
-			$('#nav').prepend(svg);
-
-			$(".selected-branch").css('opacity', 0);
-
-			// set opacity of circles to 0
-			$('.circle-opposite').css('opacity', 0);
-			$('.content-line').css('opacity', 0);
-			$('.content-line').css('width', 60);
-
-			$(".circle-opposite:eq(" + index + ")").animate(
-			{ opacity: 1}, 100, function() {
-				recurseAnimation(index-1, index+1, numCircles, 100);
-			});
-
-			setTimeout(function() {
-				$(".content-line").animate({
-					opacity: 1
-				}, lineAnimationTimer);
-				$(".branch").animate({
-					opacity: 1
-				}, lineAnimationTimer);
-			}, circleAnimationTimer);
-
-			// set flag to false so that new animation can begin
-			setTimeout(function() {
-				animationInProgress = false;
-			}, totalAnimationTime);
-
-
-			$('#content').filter(":not(:animated)").animate({
-			   height: 20
-			}, 100, function(){
-			    $('#content').animate({
-			    	//height: $('#content').get(0).scrollHeight
-			    	height: ContentHeight
-			    }, circleAnimationTimer + lineAnimationTimer);
-			});
-		}
-	});
 
 	$("#home").trigger('click');
 });
-
-$(window).resize(function() {
-
-	$('#main-background-container').css('height', window.innerHeight);
-	// change position of list elements on window resize
-	var pos = $('.right').first().position();
-	$('.menu-link').each(function() {
-		$(this).css({'left': pos.left + (2 * circleRadius) + branchLength + menuPositionPadding});
-	});
-
-	// recreate branch from list element to content
-
-	if ($(this).width() < 1024) {
-
-    	$('.label').hide();
-    	$('.portrait-container').hide();
-    	//$('.main-content-wrapper').css('float', 'right');
-
-  	} else {
-
-    	$('.label').show();
-    	$('.portrait-container').show();
-
-    }
-});
-
 
