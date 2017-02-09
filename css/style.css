@@ -50,11 +50,10 @@ h2 {
 	height: 100%;
 	position: relative;
 
-    display:flex;
+	display:flex;
     align-items: center;
 
 	margin: 0 auto;
-	overflow: scroll;
 	/*padding: 1.5%;*/
 	
 }
@@ -66,6 +65,8 @@ h2 {
 	align-items: center;
 	width: 300px;
 	height: 360px;
+	min-width: 300px;
+	min-height: 360px;
 	float: left;
 	/*border: 1px solid green;*/
 	/*
@@ -80,12 +81,13 @@ h2 {
 
 	width: 90px;
 	height: 360px;
+	
 	/*border: 1px solid green;*/
 	float: left;
 }
 #button-container {
 	float: left;
-	margin-left: 3px;
+	margin-left: 10px;
 	width: 100px;
 	height: 360px;
 	display: inline-block;
@@ -94,6 +96,7 @@ h2 {
 
 	width: 90px;
 	height: 360px;
+	
 	/*border: 1px solid red;*/
 	float: right;
 
@@ -131,9 +134,9 @@ h2 {
 	position: relative;
 	display: inline-block;
 	float: right;
-	width: 75%;
+	width: 70%;
 	margin-left: 0%;
-	/*align-items: center;*/
+	align-items: center;
 	/*padding: 10px;*/
 }
 
@@ -143,9 +146,6 @@ h2 {
 
 	/*position: relative;*/
 	width: 44.5%;
-	/*height: 390px;*/
-	/*padding-left: 10px;*/
-	/*margin-top: 10%;*/
 	float: left;
 	/*display: inline-block;*/
 }

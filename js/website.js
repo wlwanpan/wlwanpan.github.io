@@ -43,7 +43,7 @@ var CircleAnimation = function () {
 		var ex = $(q + (i+1)).attr('cx');
 		var ey = $(q + (i+1)).attr('cy');
 
-		var l = self.CreateLine(sx, sy, ex, ey, 6, q.substring(1) +"L"+i);
+		var l = self.CreateLine(sx-2, sy-2, ex, ey, 6, q.substring(1) +"L"+i);
 
 		if (q == "#L") {self.left_ctx.appendChild(l);} 
 		else if (q == "#R") {self.right_ctx.appendChild(l);}
@@ -87,14 +87,14 @@ var CircleAnimation = function () {
 			$("#L" + i).velocity({opacity: 1}, {
 				duration : timer, 
 				complete : function () {
-					$("#LL" + i).velocity({opacity: 1}, timer/2);
+					$("#LL" + i).velocity({opacity: 1}, 0);
 				}
 			});
 
 			$("#R" + i).velocity({opacity: 1}, {
 				duration : timer, 
 				complete : function () {
-					$("#RL" + i).velocity({opacity: 1}, timer/2);
+					$("#RL" + i).velocity({opacity: 1}, 0);
 				}
 			});
 
@@ -104,14 +104,14 @@ var CircleAnimation = function () {
 			$("#L" + j).velocity({opacity: 1}, {
 				duration : timer, 
 				complete : function () {
-					$("#LL" + (j-1)).velocity({opacity: 1}, timer/2);
+					$("#LL" + (j-1)).velocity({opacity: 1}, 0);
 				}
 			});
 
 			$("#R" + j).velocity({opacity: 1}, {
 				duration : timer, 
 				complete : function () {
-					$("#RL" + (j-1)).velocity({opacity: 1}, timer/2);
+					$("#RL" + (j-1)).velocity({opacity: 1}, 0);
 				}
 			});
 
@@ -128,8 +128,8 @@ var CircleAnimation = function () {
 
 		timer = 100;
 
-		$("#L" + index).animate({opacity: 1}, timer);
-		$("#R" + index).animate({opacity: 1}, timer);
+		$("#L" + index).velocity({opacity: 1}, timer);
+		$("#R" + index).velocity({opacity: 1}, timer);
 
 		setTimeout(function () {
 			self.OngoingAnimation = window.requestAnimationFrame(function () {self.recurseAnimation(index-1, index+1, timer);});
@@ -149,39 +149,37 @@ var loadContent = function(click, CircleObj) {
 	$('.circle').css('opacity', 0);
 	$('.line').css('opacity', 0);
 
+	var CurrentSelectObj = $( ".selected" )[0] || null;
+	var MenuSelect = CircleObj.menu[click];
+	var file = ('includes/' + MenuSelect.substring(1) + '.html');
+
 	var AnimationBufferDelay = 600;
 	var circles = [1, 3, 5, 7];
+
 	CircleObj.AnimationWrapper(circles[click]);
+	$("#content").empty();
 
-	if (CircleObj.OngoingAnimation == null) {
-		$("#content").empty();
+	$.ajax({
+	    url: file,
+	    cache: false,
+	    dataType: "html",
+	    success: function(data) {
+	        $("#content").html(data);
+	    }
+	});
 
-		var CurrentSelectObj = $( ".selected" )[0] || null;
-		var MenuSelect = CircleObj.menu[click];
-		var file = ('includes/' + MenuSelect.substring(1) + '.html');
- 
-		if (CurrentSelectObj) {$(CurrentSelectObj).removeClass('selected');}
+	if (CurrentSelectObj) {$(CurrentSelectObj).removeClass('selected');}
 
-		$(MenuSelect).addClass('selected');
+	$(MenuSelect).addClass('selected');
 
-		$.ajax({
-		    url: file,
-		    cache: false,
-		    dataType: "html",
-		    success: function(data) {
-		        $("#content").html(data);
-		    }
-		});
+	$('#content').animate({
+		   height: 20
+		}, 100, function(){
+		$('#content').animate({
+			height: $('#content').get(0).scrollHeight
+		}, 500);
+	});
 
-		$('#content').filter(":not(:animated)").animate({
-			   height: 20
-			}, 100, function(){
-			$('#content').animate({
-				//height: ContentHeight
-				height: $('#content').get(0).scrollHeight
-			}, 500);
-		});
-	}
 	setTimeout(function () {
 		$(':button').prop('disabled', false);
 	}, AnimationBufferDelay);
