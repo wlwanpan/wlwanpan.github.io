@@ -14,10 +14,9 @@ p {
 	font-family: 'Pangolin', cursive;
 }
 div{
-	/*border: 1px solid black;*/
+	/*border: 0.5px solid black;*/
 }
 h1 {
-	/*font-family: 'Pangolin', cursive;*/
 	font-family: 'Francois One', sans-serif;
 	font-size: 30px;
 	font-weight: bold;
@@ -36,8 +35,6 @@ h2 {
 	width: 95%;
 	height: 100%;
 	margin: 0 auto;
-	/*margin-top: 1.5%;
-	margin-bottom:1.5%;*/
 
 	background-image: url('../background/shutter.png');
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -48,7 +45,7 @@ h2 {
 
 	width: 90%;
 	height: 100%;
-	position: relative;
+	/*position: relative;*/
 
 	display:flex;
     align-items: center;
@@ -62,7 +59,7 @@ h2 {
 
 #menu-wrapper {
 
-	align-items: center;
+	vertical-align: middle;
 	width: 300px;
 	height: 360px;
 	min-width: 300px;
@@ -106,7 +103,6 @@ h2 {
 }
 .circle {
 	opacity: 0;
-	/*display: none;*/
 }
 .menu-link {
 	/*position: relative;*/
@@ -131,23 +127,32 @@ h2 {
 
 #content {
 
-	position: relative;
-	display: inline-block;
+	vertical-align: middle;
+
 	float: right;
-	width: 70%;
-	margin-left: 0%;
-	align-items: center;
+	width: 75%;
+
 	/*padding: 10px;*/
 }
 
 
 /*----- CONTACT -----*/
-.main-content-wrapper {
 
-	/*position: relative;*/
+#portrait-container {
+
+	float: right;
+	width: 50%;
+	height: 500px;
+	background-image: url('../background/me.png');
+	background-size: cover;
+	background-position: 0% 50%;
+
+}
+#main-content-wrapper {
+
 	width: 44.5%;
 	float: left;
-	/*display: inline-block;*/
+
 }
 
 .social-container {
@@ -190,17 +195,6 @@ h2 {
 	width: 80%; 
 	display: inline-block; 
 	float:left;
-
-}
-.portrait-container {
-
-	display: inline-block;
-	float: right;
-	width: 55%;
-	height: 500px;
-	background-image: url('../background/me.png');
-	background-size: cover;
-	background-position: 0% 50%;
 
 }
 /* ------RESUME------ */

@@ -148,7 +148,9 @@ var loadContent = function(click, CircleObj) {
 	$(':button').prop('disabled', true);
 	$('.circle').css('opacity', 0);
 	$('.line').css('opacity', 0);
+	$("#content").empty();
 
+	// Local Var
 	var CurrentSelectObj = $( ".selected" )[0] || null;
 	var MenuSelect = CircleObj.menu[click];
 	var file = ('includes/' + MenuSelect.substring(1) + '.html');
@@ -156,9 +158,10 @@ var loadContent = function(click, CircleObj) {
 	var AnimationBufferDelay = 600;
 	var circles = [1, 3, 5, 7];
 
+	// Render Menu Animation
 	CircleObj.AnimationWrapper(circles[click]);
-	$("#content").empty();
 
+	// Load Content
 	$.ajax({
 	    url: file,
 	    cache: false,
@@ -167,18 +170,18 @@ var loadContent = function(click, CircleObj) {
 	        $("#content").html(data);
 	    }
 	});
+	// Animate Content
+	$('#content').velocity({
+		scale: [1, 0]
+	}, {
+		duration : 1000, 
+		complete : function () {
+			//insert bounce
+		}
+	});
 
 	if (CurrentSelectObj) {$(CurrentSelectObj).removeClass('selected');}
-
 	$(MenuSelect).addClass('selected');
-
-	$('#content').animate({
-		   height: 20
-		}, 100, function(){
-		$('#content').animate({
-			height: $('#content').get(0).scrollHeight
-		}, 500);
-	});
 
 	setTimeout(function () {
 		$(':button').prop('disabled', false);
@@ -202,14 +205,26 @@ $(window).on('load', function() {
 	$('#projects').click(function(event) {loadContent(2, CircleAnimationObj);});
 	$('#contact').click(function(event) {loadContent(3, CircleAnimationObj);});
 
-
-
-	//set height of line containers 
-	$('.line').each(function() {
-		$(this).attr('height', $('#nav').height());
-	});
-
-
 	$("#home").trigger('click');
 });
 
+$(window).resize(function() {
+
+	$('#main-background-container').css('height', window.innerHeight);
+
+	if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+    	// Take the user to a different screen here.
+	}
+	else if ($(this).width() < 900) {
+
+    	$('#portrait-container').hide();
+    	$('#main-content-wrapper').removeAttr('float');
+    	//$('#container').css('align-items', 'stretch');
+
+  	} else {
+
+    	$('.portrait-container').show();
+
+
+    }
+});
