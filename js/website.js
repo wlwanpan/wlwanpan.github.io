@@ -191,7 +191,7 @@ var loadContent = function(click, CircleObj) {
 	}, AnimationBufferDelay);
 
 }
-$("#home").css('top', 50);
+
 $(window).on('load', function() {
 
 	var CircleAnimationObj = new CircleAnimation();
