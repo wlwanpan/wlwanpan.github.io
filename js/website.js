@@ -5,6 +5,7 @@ var CircleAnimation = function () {
 
 		menuposn : [],
 		menu : ['#home', '#resume', '#projects', '#contact'],
+		htmlsize: [120, window.innerHeight, 80, 500],
 		left_ctx : document.getElementById("left-ctx"),
 		right_ctx : document.getElementById("right-ctx"),
 		radius : 15,
@@ -126,7 +127,7 @@ var CircleAnimation = function () {
 	}
 	self.AnimationWrapper = function(index) {
 
-		timer = 90;
+		timer = 85;
 
 		$("#L" + index).velocity({opacity: 1}, timer);
 		$("#R" + index).velocity({opacity: 1}, timer);
@@ -137,7 +138,6 @@ var CircleAnimation = function () {
 		self.OngoingAnimation = null;
 		return false;
 	}
-
 	self.LoadCircle();
 	self.LoadBranch();
 	return self;
@@ -151,6 +151,7 @@ var loadContent = function(click, CircleObj) {
 	$("#content").empty();
 
 	// Local Var
+	var ContentHeight = CircleObj.htmlsize[click];
 	var CurrentSelectObj = $( ".selected" )[0] || null;
 	var MenuSelect = CircleObj.menu[click];
 	var file = ('includes/' + MenuSelect.substring(1) + '.html');
@@ -160,6 +161,7 @@ var loadContent = function(click, CircleObj) {
 
 	// Render Menu Animation
 	CircleObj.AnimationWrapper(circles[click]);
+	$("#content").css('height', ContentHeight);
 
 	// Load Content
 	$.ajax({
@@ -170,8 +172,9 @@ var loadContent = function(click, CircleObj) {
 	        $("#content").html(data);
 	    }
 	});
-	// Animate Content
+	 // Animate Content
 	$('#content').velocity({
+		translateY: "-50%",
 		scaleY: [1, 0]
 	}, {
 		duration : 900, 
@@ -186,17 +189,26 @@ var loadContent = function(click, CircleObj) {
 	setTimeout(function () {
 		$(':button').prop('disabled', false);
 	}, AnimationBufferDelay);
-}
 
+}
+$("#home").css('top', 50);
 $(window).on('load', function() {
 
 	var CircleAnimationObj = new CircleAnimation();
+	var OnloadPosn = [[42, 113], [89, 113], [134, 113], [178, 113]]
 
 	$( ".menu-element" ).each(function(index, element) {
-  		$(this).css('top', CircleAnimationObj.menuposn[index]/1.68); ////////need to change
+  		//console.log(index);
+  		$(this).velocity({
+			translateY: OnloadPosn[index]
+		}, {
+			duration : 1000, 
+			complete : function () {
+				
+		}});
 	});
 
-	console.log(window.innerHeight);
+
 
 	$('.btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
@@ -212,6 +224,8 @@ $(window).on('load', function() {
 
 $(window).resize(function () {
 	
-	$('#main-background-container').css('height', window.innerHeight);
+	$('#main-background-container').css('min-height', window.innerHeight);
+	$('#container').css('min-height', window.innerHeight);
+	//$('#content').css('height', window.innerHeight);
 
 });
