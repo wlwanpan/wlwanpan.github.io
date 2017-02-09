@@ -4,8 +4,8 @@ html {
 	height: 100%;
 }
 body {
+	/*height: 100%;*/
 	overflow: hidden;
-	height: 100%;
 }
 a {
 	color: black;
@@ -131,7 +131,6 @@ h2 {
 
 	float: right;
 	width: 75%;
-
 	/*padding: 10px;*/
 }
 
@@ -150,8 +149,8 @@ h2 {
 }
 #main-content-wrapper {
 
+	display: inline-block;
 	width: 44.5%;
-	float: left;
 
 }
 
@@ -198,14 +197,16 @@ h2 {
 
 }
 /* ------RESUME------ */
-.resume-wrapper {
+#resume-wrapper {
 
+	max-height: 100%;
 	padding: 10px; 
 	margin-left: 10%;
+	overflow-y: auto;
 
 }
 .resume-container p {
-
+ 	font-family: 'Pangolin', cursive;
 	display : inline;
 
 }

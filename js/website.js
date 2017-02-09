@@ -126,7 +126,7 @@ var CircleAnimation = function () {
 	}
 	self.AnimationWrapper = function(index) {
 
-		timer = 100;
+		timer = 90;
 
 		$("#L" + index).velocity({opacity: 1}, timer);
 		$("#R" + index).velocity({opacity: 1}, timer);
@@ -155,7 +155,7 @@ var loadContent = function(click, CircleObj) {
 	var MenuSelect = CircleObj.menu[click];
 	var file = ('includes/' + MenuSelect.substring(1) + '.html');
 
-	var AnimationBufferDelay = 600;
+	var AnimationBufferDelay = 900;
 	var circles = [1, 3, 5, 7];
 
 	// Render Menu Animation
@@ -172,9 +172,9 @@ var loadContent = function(click, CircleObj) {
 	});
 	// Animate Content
 	$('#content').velocity({
-		scale: [1, 0]
+		scaleY: [1, 0]
 	}, {
-		duration : 1000, 
+		duration : 900, 
 		complete : function () {
 			//insert bounce
 		}
@@ -193,8 +193,10 @@ $(window).on('load', function() {
 	var CircleAnimationObj = new CircleAnimation();
 
 	$( ".menu-element" ).each(function(index, element) {
-  		$(this).css('top', CircleAnimationObj.menuposn[index]/1.68);
+  		$(this).css('top', CircleAnimationObj.menuposn[index]/1.68); ////////need to change
 	});
+
+	console.log(window.innerHeight);
 
 	$('.btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
@@ -218,7 +220,8 @@ $(window).resize(function() {
 	else if ($(this).width() < 900) {
 
     	$('#portrait-container').hide();
-    	$('#main-content-wrapper').removeAttr('float');
+
+    	//$('#main-content-wrapper').css('margin', '0 auto');
     	//$('#container').css('align-items', 'stretch');
 
   	} else {
