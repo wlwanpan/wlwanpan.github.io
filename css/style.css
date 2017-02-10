@@ -85,8 +85,8 @@ h2 {
 /***** NAVIGATION *****/
 #menu-wrapper {
 
-	transition: scale 1s ease-in-out;
-
+	transition: width 1s ease-in-out;
+	position: relative;
 	width: 260px;
 	height: 360px;
 	min-width: 260px;
@@ -125,8 +125,11 @@ h2 {
 
 #content {
 
+	-webkit-transition: width 1s cubic-bezier(0.42, 0, 0.49, 1.57); 
+    transition: width 1s cubic-bezier(0.42, 0, 0.49, 1.57);
+    animation-duration: 1s;
 	float: right;
-	width: 75%;
+	width: 100%;
 	height: 100%;
 	/*padding: 10px;*/
 }

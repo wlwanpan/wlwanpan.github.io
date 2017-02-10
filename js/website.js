@@ -261,11 +261,14 @@ $(window).on('load', function() {
 
 $(window).resize(function () {
 	
-	$('#main-background-container').css('max-height', window.innerHeight);
-	$('#main-background-container').css('min-height', window.innerHeight);
+	$('#main-background-container').css('height', window.innerHeight);
+	//$('#main-background-container').css('min-height', window.innerHeight);
 	
 	if (window.matchMedia("(max-width: 768px)").matches) {
-		MobileMode = true;
-	} else {MobileMode = false;}
+		$("#content").css('animation-name', 'test');
+        //animation-fil-mode: forwards;
+	} else {
+		$("#content").css('animation-name', '');
+	}
 
 });
