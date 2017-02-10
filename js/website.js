@@ -1,3 +1,4 @@
+var MobileMode;
 
 var CircleAnimation = function () {
 
@@ -22,7 +23,7 @@ var CircleAnimation = function () {
 
 			var y = (i * self.y_margin) + 20;
 			var Lx = 15;
-			var Rx = 75;
+			var Rx = 55;
 
 			if (i % 2 == 1) {
 				Lx += self.x_margin;
@@ -148,15 +149,24 @@ var CircleAnimation = function () {
 
 		timer = 85;
 
-		$("#L" + index).velocity({opacity: 1}, timer);
-		$("#R" + index).velocity({opacity: 1}, timer);
+		$("#L" + index).velocity({opacity: 1}, {
+			duration: timer, 
+			complete: function () {
+				$("#LML" + index).velocity({opacity: 1}, timer);
+			}});
+		$("#R" + index).velocity({opacity: 1}, {
+			duration: timer, 
+			complete: function () {
+				$("#RML" + index).velocity({opacity: 1}, timer);
+			}});
+		//$("#RML" + index).velocity({opacity: 1}, timer);
+		//$("#LML" + index).velocity({opacity: 1}, timer);
 
 		setTimeout(function () {
 			self.OngoingAnimation = window.requestAnimationFrame(function () {self.recurseAnimation(index-1, index+1, timer);});
 		}, timer);
 		self.OngoingAnimation = null;
-		$("#RML" + index).velocity({opacity: 1}, timer+900);
-		$("#LML" + index).velocity({opacity: 1}, timer+900);
+
 		return false;
 	}
 	self.LoadCircle();
@@ -171,8 +181,8 @@ var loadContent = function(click, CircleObj) {
 	$('.line').css('opacity', 0);
 	$("#content").empty();
 
-	var ContentHeight = CircleObj.htmlsize[click];
-	//var ContentHeight = window.innerHeight;
+	//var ContentHeight = CircleObj.htmlsize[click];
+	var ContentHeight = window.innerHeight;
 	var CurrentSelectObj = $( ".selected" )[0] || null;
 	var MenuSelect = CircleObj.menu[click];
 	var file = ('includes/' + MenuSelect.substring(1) + '.html');
@@ -213,35 +223,14 @@ var loadContent = function(click, CircleObj) {
 
 }
 
-var MobileMenu = function() {
-
-	$("#menu-wrapper").velocity({
-		opacity: [0, 1]
-	}, {
-		duration : 2000,
-		complete : function () {
-			$('#right-ctx').css('display', 'none');
-    		$('#left-ctx').css('display', 'none');
-		}}
-	);
-
-    //$('#menu-wrapper') {
-    //    display: none;
-    //    min-width: 100px;
-    //    width: 100px;
-	//}
- 
-}
-
 $(window).on('load', function() {
 
 	if (window.matchMedia("(max-width: 768px)").matches) {
-		//MobileMenu();
-	}
+		MobileMode = true;
+	} else {MobileMode = false;}
 
 	$('#button-container .btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
-	$('#container').css('height', window.innerHeight);
 
 	var CircleAnimationObj = new CircleAnimation();
 	var OnloadPosn = [[42, 113], [89, 113], [134, 113], [178, 113]];
@@ -260,9 +249,11 @@ $(window).on('load', function() {
 	$('#resume').click(function(event) {loadContent(1, CircleAnimationObj);});
 	$('#projects').click(function(event) {loadContent(2, CircleAnimationObj);});
 	$('#contact').click(function(event) {loadContent(3, CircleAnimationObj);});
-	$('#mobile-menu').click(function(event) {
-		MobileMenu();
-		//$('#mobile-menu').addClass('selected');
+
+	$("#main-background-container").on("swiperight",function(){
+		if (MobileMode) {
+  			console.log();
+  		}
 	});
 
 	$("#home").trigger('click');
@@ -270,11 +261,11 @@ $(window).on('load', function() {
 
 $(window).resize(function () {
 	
+	$('#main-background-container').css('max-height', window.innerHeight);
 	$('#main-background-container').css('min-height', window.innerHeight);
-	$('#container').css('min-height', window.innerHeight);
 	
 	if (window.matchMedia("(max-width: 768px)").matches) {
-		//MobileMenu();
-	}
+		MobileMode = true;
+	} else {MobileMode = false;}
 
 });
