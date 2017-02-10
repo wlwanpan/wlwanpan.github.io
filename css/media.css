@@ -2,37 +2,37 @@
 
 @media only screen and (max-width: 1140px) {
     #container {
+        
         width: 100%;
+        
     }
 }
 @media only screen and (max-width: 1024px) {
-    #portrait-container {
+    /*#portrait-container {
         width: 40%;
     }
     #main-content-wrapper {
         width: 59%;
-    }
+    }*/
+
 }
-/* Medium Screen -----------------*/
-@media only screen and (max-width: 900px) {
+/* TABLET -----------------*/
 
-    .icon-wrapper {
-        width: 100%;
+@media only screen and (max-width: 768px) {
+    #menu-wrapper {
     }
-
-    #resume-wrapper {
-    	width: 100%;
-    	padding: 5px;
+    #mobile-menu-wrapper .btn-1 {
+        display: inline-block;
     }
-}
-@media only screen and (max-width: 750px) {
-
     #portrait-container {
         display: none;
     }
-    #main-content-wrapper {
+    #content{
         width: 100%;
     }
+    #main-content-wrapper {
+        width: 100%;
+    }  
 }
 
 /* Smartphones (portrait) ----------- */

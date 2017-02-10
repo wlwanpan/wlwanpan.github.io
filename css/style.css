@@ -4,7 +4,7 @@ html {
 	height: 100%;
 }
 body {
-	/*height: 100%;*/
+	height: 100%;
 	overflow-y: scroll;
 }
 a {
@@ -38,7 +38,7 @@ h2 {
 #main-background-container {
 
 	width: 95%;
-	height: 100%;
+	height: 2000px;
 	margin: 0 auto;
 
 	background-image: url('../background/shutter.png');
@@ -48,27 +48,32 @@ h2 {
 }
 #container {
 
+	-webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
+    transition: width 1s;
+
 	width: 90%;
 	height: 100%;
-	/*position: relative;*/
-
 	display:flex;
-
-    /*align-items: center;*/
-
 	margin: 0 auto;
-	/*padding: 1.5%;*/
 	
 }
 
 /***** NAVIGATION *****/
-
+#mobile-menu-wrapper{
+	top: 0%;
+	left: 0%;
+	text-align: center;
+	display: none;
+}
+#mobile-menu {
+	margin-top: 10px;
+}
 #menu-wrapper {
 
 	/*vertical-align: middle;*/
-	width: 300px;
+	width: 290px;
 	height: 360px;
-	min-width: 300px;
+	min-width: 290px;
 	min-height: 360px;
 	float: left;
 	/*border: 1px solid green;*/
@@ -90,7 +95,7 @@ h2 {
 }
 #button-container {
 	float: left;
-	margin-left: 10px;
+	margin-left: 5px;
 	width: 100px;
 	height: 360px;
 	display: inline-block;
@@ -161,14 +166,12 @@ h2 {
 #contact-head {
 	height: 20%;
 	width: 100%;
+	margin-left: 14%;
 }
-#contact-head h1 {
-	/*float: left;*/
-	margin-left: 15%;
-}
-#contact-head p {
-	text-align: center;
-	margin-left: 13%;
+#contact-info {
+	max-width: 250px;
+	width: 80%;
+	float: left
 }
 #social-container {
 
@@ -208,7 +211,8 @@ h2 {
 /* ------RESUME------ */
 #resume-wrapper {
 
-	padding-left: 5%;
+	/*padding-left: 5%;*/
+	float: right;
 	width: 90%;
 	margin: 0 auto;
 	/*margin-left: 10%;*/
