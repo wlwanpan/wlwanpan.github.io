@@ -1,3 +1,15 @@
+s
+@keyframes move {
+    from {
+        transform: translate3d(0px, 0px, 0px);
+        animation-timing-function:ease-in-out;
+    }
+    to {
+        transform: translate3d(10px, 50px, 0px);
+        animation-timing-function:ease-in-out;
+    }
+}
+
 @keyframes test {
     from {
         left: 10%;
@@ -26,6 +38,12 @@
 /* TABLET -----------------*/
 
 @media only screen and (max-width: 768px) {
+    #main-background-container{
+        width: 100%;
+    }
+    #container {
+        width: 100%;
+    }
     #menu-wrapper{
         position:absolute; 
         display: none;
@@ -35,18 +53,15 @@
     }
     #main-content-wrapper {
         width: 49%;
-    }  
+    }
+    #resume-wrapper p{
+        font-size: 15px;
+    }
 }
 
 /* Smartphones (portrait) ----------- */
 @media only screen and (max-width : 320px) {
 /* Styles */
-    #main-background-container{
-        width: 100%;
-    }
-    #container {
-        width: 100%;
-    }
     .icon-wrapper .label {
         display: none;
     } 

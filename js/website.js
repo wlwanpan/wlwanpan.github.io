@@ -181,8 +181,7 @@ var loadContent = function(click, CircleObj) {
 	$('.line').css('opacity', 0);
 	$("#content").empty();
 
-	//var ContentHeight = CircleObj.htmlsize[click];
-	var ContentHeight = window.innerHeight;
+	var ContentHeight = $("#container").height();
 	var CurrentSelectObj = $( ".selected" )[0] || null;
 	var MenuSelect = CircleObj.menu[click];
 	var file = ('includes/' + MenuSelect.substring(1) + '.html');
@@ -225,12 +224,18 @@ var loadContent = function(click, CircleObj) {
 
 $(window).on('load', function() {
 
+	//var T = new Screen();
+	//T.moveDot();
+
+	$('#dot-playground').blur();
+
 	if (window.matchMedia("(max-width: 768px)").matches) {
 		MobileMode = true;
 	} else {MobileMode = false;}
 
 	$('#button-container .btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
+	$("#content").css('height', window.innerHeight);
 
 	var CircleAnimationObj = new CircleAnimation();
 	var OnloadPosn = [[42, 113], [89, 113], [134, 113], [178, 113]];
@@ -260,7 +265,7 @@ $(window).on('load', function() {
 });
 
 $(window).resize(function () {
-	
+	$("#content").css('height', window.innerHeight);
 	$('#main-background-container').css('height', window.innerHeight);
 	//$('#main-background-container').css('min-height', window.innerHeight);
 	

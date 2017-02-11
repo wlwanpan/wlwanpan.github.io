@@ -58,7 +58,21 @@ h2 {
     top:50%;
     transform:translateY(-50%);
 }
+.dot {
+    animation-name: move;
+    animation-duration: 5s;    
+
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
 /* GLOBAL ID */
+#dot-playground {
+	position: absolute;
+	overflow: hidden;
+	width: 95%;
+	height: 100%;
+	/*border: 1px solid black;*/
+}
 #main-background-container {
 
 	width: 95%;
@@ -113,12 +127,10 @@ h2 {
 
 	width: 70px;
 	height: 360px;
-	
 	/*border: 1px solid red;*/
 	float: right;
 
 }
-
 /***********************/
 
 /******* CONTENT *******/
