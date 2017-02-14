@@ -1,4 +1,4 @@
-s
+
 @keyframes move {
     from {
         transform: translate3d(0px, 0px, 0px);
@@ -33,11 +33,20 @@ s
     #main-content-wrapper {
         width: 59%;
     }*/
+    #right-ctx {
+        display: none;
+    } 
+    #menu-wrapper {
+        min-width: 190px;
+    }
 
 }
 /* TABLET -----------------*/
 
 @media only screen and (max-width: 768px) {
+    #mobile-menu {
+        opacity: 1;
+    }
     #main-background-container{
         width: 100%;
     }
@@ -56,6 +65,7 @@ s
     }
     #resume-wrapper p{
         font-size: 15px;
+        float: none;
     }
 }
 
@@ -65,6 +75,10 @@ s
     .icon-wrapper .label {
         display: none;
     } 
+    .icon {
+        /*float: none;*/
+        margin: 0 auto;
+    }
     #portrait-container{
         display: none;
     }

@@ -1,4 +1,3 @@
-var MobileMode;
 
 var CircleAnimation = function () {
 
@@ -224,18 +223,11 @@ var loadContent = function(click, CircleObj) {
 
 $(window).on('load', function() {
 
-	//var T = new Screen();
-	//T.moveDot();
 
-	$('#dot-playground').blur();
-
-	if (window.matchMedia("(max-width: 768px)").matches) {
-		MobileMode = true;
-	} else {MobileMode = false;}
 
 	$('#button-container .btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
-	$("#content").css('height', window.innerHeight);
+	//$("#content").css('height', window.innerHeight);
 
 	var CircleAnimationObj = new CircleAnimation();
 	var OnloadPosn = [[42, 113], [89, 113], [134, 113], [178, 113]];
@@ -255,11 +247,6 @@ $(window).on('load', function() {
 	$('#projects').click(function(event) {loadContent(2, CircleAnimationObj);});
 	$('#contact').click(function(event) {loadContent(3, CircleAnimationObj);});
 
-	$("#main-background-container").on("swiperight",function(){
-		if (MobileMode) {
-  			console.log();
-  		}
-	});
 
 	$("#home").trigger('click');
 });
@@ -267,6 +254,7 @@ $(window).on('load', function() {
 $(window).resize(function () {
 	$("#content").css('height', window.innerHeight);
 	$('#main-background-container').css('height', window.innerHeight);
+
 	//$('#main-background-container').css('min-height', window.innerHeight);
 	
 	if (window.matchMedia("(max-width: 768px)").matches) {

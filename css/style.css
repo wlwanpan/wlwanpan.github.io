@@ -50,6 +50,7 @@ h2 {
 
 }
 .btn-1{
+	font-family: 'Francois One', sans-serif !important;
 	display: none;
 }
 .alignVertical {
@@ -59,13 +60,18 @@ h2 {
     transform:translateY(-50%);
 }
 .dot {
-    animation-name: move;
-    animation-duration: 5s;    
-
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
+  
 }
 /* GLOBAL ID */
+.fa-th-large {
+	opacity: 0;
+	position: absolute;
+	margin-left: 1%;
+	margin-top: 1%;
+}
+#mobile-menu: hover {
+	opacity: 0;
+}
 #dot-playground {
 	position: absolute;
 	overflow: hidden;
