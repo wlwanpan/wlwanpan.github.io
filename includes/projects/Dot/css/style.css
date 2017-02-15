@@ -37,7 +37,6 @@ a {
 }
 #playground-container {
 
-	border: 1px solid black;
 	 display: flex;
   	align-items: center;
   	justify-content: center;
@@ -47,7 +46,7 @@ a {
 #dot-playground {
 
 	background: #ffffff;
-	border: 1px solid white;
+	border: 1px solid black;
 	border-style: dashed;
 	display: block;
 	height: 99%;
