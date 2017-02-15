@@ -5,7 +5,6 @@ var CircleAnimation = function () {
 
 		menuposn : [],
 		menu : ['#home', '#resume', '#projects', '#contact'],
-		htmlsize: [120, window.innerHeight, 80, 500],
 		left_ctx : document.getElementById("left-ctx"),
 		right_ctx : document.getElementById("right-ctx"),
 		radius : 15,
@@ -13,7 +12,6 @@ var CircleAnimation = function () {
 		y_margin : 40,
 		Lx : 15,
 		Rx : 75,
-		OngoingAnimation : null,
 
 	}
 	self.LoadCircle = function () {
@@ -139,7 +137,7 @@ var CircleAnimation = function () {
 
 		setTimeout(function() {
 			if (i - 1 >= 0 || j < 9) {
-				self.OngoingAnimation = window.requestAnimationFrame(function () {self.recurseAnimation(i-1, j+1, timer);});
+				window.requestAnimationFrame(function () {self.recurseAnimation(i-1, j+1, timer);});
 			};
 		}, timer);
 
@@ -162,9 +160,8 @@ var CircleAnimation = function () {
 		//$("#LML" + index).velocity({opacity: 1}, timer);
 
 		setTimeout(function () {
-			self.OngoingAnimation = window.requestAnimationFrame(function () {self.recurseAnimation(index-1, index+1, timer);});
+			window.requestAnimationFrame(function () {self.recurseAnimation(index-1, index+1, timer);});
 		}, timer);
-		self.OngoingAnimation = null;
 
 		return false;
 	}
@@ -227,7 +224,6 @@ $(window).on('load', function() {
 
 	$('#button-container .btn-1').show();
 	$('#main-background-container').css('height', window.innerHeight);
-	//$("#content").css('height', window.innerHeight);
 
 	var CircleAnimationObj = new CircleAnimation();
 	var OnloadPosn = [[42, 113], [89, 113], [134, 113], [178, 113]];
@@ -254,14 +250,4 @@ $(window).on('load', function() {
 $(window).resize(function () {
 	$("#content").css('height', window.innerHeight);
 	$('#main-background-container').css('height', window.innerHeight);
-
-	//$('#main-background-container').css('min-height', window.innerHeight);
-	
-	if (window.matchMedia("(max-width: 768px)").matches) {
-		$("#content").css('animation-name', 'test');
-        //animation-fil-mode: forwards;
-	} else {
-		$("#content").css('animation-name', '');
-	}
-
 });

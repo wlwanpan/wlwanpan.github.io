@@ -1,0 +1,45 @@
+
+
+#main-project-wrapper {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+	width: 95%;
+	float: right;
+	text-align: center;
+}
+#project-section {
+
+}
+.project-element {
+
+	display: block;	
+	width: 80%;
+	height: 100px;
+	padding-top: 5%;
+	margin: 0 auto;
+
+}
+#project-image-1{
+	background-image: url('../background/projects/p-1.png');
+	background-size: cover;
+	background-position: 0% 0%;
+}
+.project-image {
+	
+	/*box-shadow: 0 2px 8px rgba(0, 0, 0, .33);*/
+	float: left;
+	width: 100px;
+	height: 100px;	
+
+}
+.project-label p {
+
+}
+.project-label {
+
+	/*box-shadow: 0 2px 8px rgba(0, 0, 0, .33);*/
+	/*background: #ffffff;*/
+	display: inline-block;
+	float: left;
+	width: 60%;
+	height: 100px;
+}
