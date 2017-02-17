@@ -1,107 +1,31 @@
-
-@keyframes move {
-    from {
-        transform: translate3d(0px, 0px, 0px);
-        animation-timing-function:ease-in-out;
-    }
-    to {
-        transform: translate3d(10px, 50px, 0px);
-        animation-timing-function:ease-in-out;
-    }
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+	#intro-name h1 {
+		font-size: 1em;
+	}
+	#intro-name h2 {
+		font-size: 3.5em;
+	}
 }
+@media only screen and (max-width : 768px) {
+	#aboutme-container {
+	
+		width: 100%;
+		margin-left: 0%;
+		display: block;
 
-@keyframes test {
-    from {
-        left: 10%;
-    }
-    to {
-        left: 0%; 
-    }
-}
+	}
+	#skill-container {
+		
+		width: 100%;
+		display: block;
+		margin-right: 0%;
+		float: left;
+		margin-top: 50px;
 
-@media only screen and (max-width: 1140px) {
-    #container {
-        
-        width: 100%;
-        
-    }
+	}
 }
-@media only screen and (max-width: 1024px) {
+/* Tablets (portrait and landscape) ----------- */
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
 
-    #right-ctx {
-        display: none;
-    } 
-    #menu-wrapper {
-        min-width: 190px;
-    }
-
-}
-@media only screen and (max-height: 607px) {
-    #main-content-wrapper {
-        height: 90%;
-    }
-    #portrait-container {
-        height: 90%;
-    }
-}
-/* TABLET -----------------*/
-
-@media only screen and (max-width: 768px) {
-    #mobile-menu {
-        opacity: 1;
-    }
-    #main-background-container{
-        width: 100%;
-    }
-    #container {
-        width: 100%;
-    }
-    #menu-wrapper{
-        /*position:absolute;*/ 
-        display: none;
-    }
-    #content{
-
-    }
-    #main-content-wrapper {
-        width: 49%;
-    }
-    #resume-wrapper p{
-        font-size: 15px;
-        float: none;
-    }
-}
-@media only screen and (max-width: 474px) {
-    #contact-info p{
-        display: none;
-    }
-    #contact-head {
-        height: 10%;
-    }
-    #portrait-container {
-        display: none;
-    }
-    #main-content-wrapper {
-        width: 100%;
-    }
-}
-/* Smartphones (portrait) ----------- */
-@media only screen and (max-width : 320px) {
-/* Styles */
-    .icon-wrapper .right-icon {
-        margin-left: 0%;
-    } 
-    .icon-wrapper {
-        /*margin-left: 5%;*/
-    }
-    .icon {
-        /*float: none;*/
-        margin: 0 auto;
-    }
-    #portrait-container{
-        display: none;
-    }
-    #main-content-wrapper {
-        width: 100%;
-    }  
 }

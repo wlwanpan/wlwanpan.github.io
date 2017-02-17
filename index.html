@@ -8,61 +8,207 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
 
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link rel="stylesheet" type="text/css" href="css/media.css">
-	<link rel="stylesheet" type="text/css" href="css/projectstyle.css">
+	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.css">
 
-	
-	<link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
-	<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/velocity.js"></script>
-	<script src="js/website.js"></script>
-
-	<script type="text/javascript">
-		var window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
-		var window.cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
-
-	</script>
+	<script src="js/animation.js"></script>
+	<script src="js/lettering.js"></script>
+	<script src="js/textillate.js"></script>
+	<script src="js/typed.js"></script>
 	
 </head>
-<body>
-	<div id="main-background-container">
 
-		<div id="mobile-menu-wrapper">
-			<a href='#'><i id="mobile-menu" class="fa fa-th-large fa-2x" aria-hidden="true"></i></button></a>
+<body>
+	
+	<section id="header">
+		<div id="icon-container"> 
+			<div class="icon vertical-align">
+				<a href='https://github.com/wlwanpan/wlwanpan.github.io' target="_blank">
+					<i class="fa fa-git fa-2x main-icon" aria-hidden="true"></i>
+				</a>
+			</div>
+			<div class="icon vertical-align">
+				<a href='#'>
+					<i id="project-icon" class="fa fa-cubes fa-2x main-icon" aria-hidden="true"></i>
+				</a>
+			</div>
+			<div class="icon vertical-align">
+				<a href='#'>
+					<i id="aboutme-icon" class="fa fa-user-circle fa-2x main-icon" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section>
+
+		<div id="intro-container">
+
+			<div id="intro-name" class="">
+				<h1 class="intro-name-font anti-blur">Hello, I'm </h1><h2 class="tlt intro-name-font anti-blur">Warren Wan!</h2>
+			</div>
+			<div id="command-container">
+				<h1 id="h1-fix" class="anti-blur">Cloud@internet-me:~$<h1 class="anti-blur command-typing"></h1><h1 class="typed-cursor">|</h1></h1>
+			</div>
+
 		</div>
 
-		<div id="container" class="alignVertical">
+	</section>
 
-			<a href='#'><i class="fa fa-th-large fa-2x" aria-hidden="true"></i></button></a>
+	<section>
 
-			<div id="menu-wrapper" class="alignVertical">
+		<div id="section-aboutme" class="section-wrapper black">
 
-				<svg id="left-ctx"></svg>
+			<div class="section-inner">
 
-				<div id="button-container">
+				<div id="aboutme-container">
+					<h1>About ME</h1></br>
+					<div id="aboutme-introduction">
 
-					<a href='#'><button id="home" class="btn-1 btn-1f menu-link menu-element">HOME</button></a>
-					<a href='#'><button id="resume" class="btn-1 btn-1f menu-link menu-element">RESUME</button></a>
-					<a href='#'><button id="projects" class="btn-1 btn-1f menu-link menu-element">PROJECT</button></a>
-					<a href='#'><button id="contact" class="btn-1 btn-1f menu-link menu-element">CONTACT</button></a>
+						<p>&nbsp I recently graduated from University and is looking for a fulltime job as a web designer. By doing so, I wish to broaden my knowledge base on both front-end technology and UI/UX design. I am currently living in Burnaby, BC, but is willing to relocate accordingly. </p>
+						</br>
+						<p>&nbsp In the meantime, I am learning development tools to create some cool animations and design at endless library of information called the Internet, and with the help of my long-trusted friend the librarian, google search and my private tutor, youtube.</p>
+						</br>
+						<p>&nbsp What I like the most about web development is that it allows anyone to transform any of their crazy and creative idea into a single HTML page. A page able to be instantly shared and viewed by anyone from anywhere who reaches for it, while providing awesome, interactive and fun experiences.</p>
+						</br>
+						<p>&nbsp I also like to write mini games, sketch anime characters, read books about health, and swim. Hit me up if you have any questions, I'll be happy to answer.</p>
 
+					</div>
 				</div>
 
-				<svg id="right-ctx"></svg>
+				<div id="skill-container">
+
+					<p>- Feel free to click on <a href="https://www.dropbox.com/s/ewtcsxyk0pizts8/Resume.pdf?dl=0" target="_blank"><i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i></a> to download the .pdf version of my resume for more details.</p>
+					<div id="skill-bracket-toggle">
+						<a><i id="bracket-toggle-button" class="fa fa-toggle-off fa-1x" aria-hidden="true"></i></a>
+						<!--<a><i class="fa fa-toggle-off fa-1x" aria-hidden="true"></i></a>-->
+					</div>
+					<!-- General -->
+					<div class="bracket-wrapper">
+						<div class="bracket-arrow">
+							<div class="rotate">
+								<a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+							</div>
+							<p> * {<p class="closing-bracket-p" style="opacity: 0;"> .. } </p>
+						</div>
+						<div class="bracket-closing">
+							<div class="bracket-content">
+								<p> Name : Warren L. Wan Pang Cheung ;</p></br>
+								<p> Email : wlwanpan@uwaterloo.ca ;</p>
+							</div>
+							<p> } </p>
+						</div>	
+					</div>
+					<!-- Skills -->
+					<div class="bracket-wrapper">
+						<div class="bracket-arrow">
+							<div class="rotate">
+								<a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+							</div>
+							<p> Skill {<p class="closing-bracket-p" style="opacity: 0;"> .. } </p>
+						</div>
+						<div class="bracket-closing">
+							<div class="bracket-content">
+								<p> Languages : French and English ; </p></br>
+								<p> Programming Languages : Python , C and Java ; </p></br>
+								<p> Front-end : JavaScript , jQuery , HTML and CSS ; </p></br>
+								<p> Operating Systems : Mac OS X , Linux and Windows ;  </p></br>
+							</div>
+							<p> } </p>
+						</div>	
+					</div>
+					<!-- Experience -->
+					<div class="bracket-wrapper">
+						<div class="bracket-arrow">
+							<div class="rotate">
+								<a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+							</div>
+							<p> Experience {<p class="closing-bracket-p" style="opacity: 0;"> .. } </p>
+						</div>
+						<div class="bracket-closing">
+							<div class="bracket-content">
+								<p> Hug Lab : Research Assistant , ( ' May 2016 - Dec 2016 ' ) ; </p></br>
+								<p> MSIRI : Research Assistant , ( ' Sept 2014 - Dec 2014 ' ) ; </p></br>
+								<p> National Wildlife : Volunteer , ( ' Feb 2012 - Apr 2012 ' ) ; </p></br>
+							</div>
+							<p> } </p>
+						</div>	
+					</div>
+					<!-- Education -->
+					<div class="bracket-wrapper">
+						<div class="bracket-arrow">
+							<div class="rotate">
+								<a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+							</div>
+							<p> Education {<p class="closing-bracket-p" style="opacity: 0;"> .. } </p>
+						</div>
+						<div class="bracket-closing">
+							<div class="bracket-content">
+								<p> Major : BSc , honors Biochemistry ; </p></br>
+								<p> Minor : Computer Science ; </p></br>
+								<p> Institution : University of Waterloo , ( ' Aug 2012 - Dec 2016 ' ) ; </p></br>
+							</div>
+							<p> } </p>
+						</div>	
+					</div>
+					<!-- Certification -->
+					<div class="bracket-wrapper">
+						<div class="bracket-arrow">
+							<div class="rotate">
+								<a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+							</div>
+							<p> Certification {<p class="closing-bracket-p" style="opacity: 0;"> .. } </p>
+						</div>
+						<div class="bracket-closing">
+							<div class="bracket-content">
+								<p> Red Cross First Aider : Certified Level A , CPR and AED ; </p></br>
+								<p> Certified Bross Cross : Assistant lifeguard ; </p></br>
+							</div>
+							<p> } </p>
+						</div>	
+					</div>
+					<!-- END -->
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section>
+
+		<div id="section-project" class="section-wrapper white">
+
+			<div class="section-inner">
+
+				<h1> PROJECTS</h1></br>
+
+				<p>Still working on it. Should be up soon !</p>
 
 			</div>
 
-			<div id="content" class="alignVertical"></div>
+		</div>
+
+	</section>
+
+
+</body>
+
+	<footer> 
+		<div id="footer">
+			
+			<div id="footer-content">
+			</div>
 
 		</div>
-	</div>
-</body>
+	</footer>
+
 </html>
