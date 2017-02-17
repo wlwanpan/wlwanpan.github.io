@@ -20,6 +20,21 @@ $(window).on('load', function() {
             contentType: 'html',
         });
     });
+
+    document.addEventListener('keydown', function(event) {
+
+        //event.preventDefault()
+        //right pressed
+        if(event.keyCode == 39) {
+            //$('#lego-right-arm').addClass('lego-move');
+            //$('#lego-left-arm').addClass('lego-move');
+        }
+        else {
+            //$('#lego-right-arm').removeClass('lego-move');
+        }
+
+    });
+
     // Toggle to Minimize or Maximize All Resume Brackets
     $('#bracket-toggle-button').on('click', function(){
         // toggle off => display
@@ -90,10 +105,10 @@ $(window).on('load', function() {
         }
     });
     // Coloring Resume-section
-    var white = [';',':', ',', 'and', '{', '}', '.', '(', ')', '..'];
-    var green = ['*', 'Skill', 'Education', 'Experience', 'Certification', 'Awards'];
-    var red = ['Python', 'Front-end', 'Computer', 'Science'];
-    var brown = ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'Aug', 'Dec', '2012', '2014', '2016'];
+    var white = {color: "#ffffff", words: [';',':', ',', 'and', '{', '}', '.', '(', ')', '..']};
+    var green = {color: "#A6E22E", words: ['Skill', 'Education', 'Experience', 'Certification', 'Awards']};
+    var red = {color: "#F9264C", words: ['Python', 'Front-end', 'Computer', 'Science', '*']};
+    var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'Aug', 'Dec', '2012', '2014', '2016']};
 
     $('.bracket-wrapper').each(function() {
 
@@ -107,18 +122,19 @@ $(window).on('load', function() {
                 
                 var word = Phrase[i];
 
-                if (white.includes(word)) {
-
-                    if (word == 'and' || word == '..') {ColorizedPhrase += " " + word.fontcolor("#ffffff") + " ";}
-                    else if (word == '{' || word == '(') {ColorizedPhrase += " " + word.fontcolor("#ffffff");}
-                    else {ColorizedPhrase += word.fontcolor("#ffffff") + " ";}
+                if (white["words"].includes(word)) {
+                    var color = white["color"];
+                    console.log(color);
+                    if (word == 'and' || word == '..') {ColorizedPhrase += " " + word.fontcolor(color) + " ";}
+                    else if (word == '{' || word == '(') {ColorizedPhrase += " " + word.fontcolor(color);}
+                    else {ColorizedPhrase += word.fontcolor(color) + " ";}
                 }
 
-                else if (brown.includes(word)) {ColorizedPhrase += word.fontcolor("#AC6A22");}
+                else if (brown["words"].includes(word)) {ColorizedPhrase += word.fontcolor(brown["color"]);}
 
-                else if (green.includes(word)) {ColorizedPhrase += " " + word.fontcolor("#A6E22E");} 
+                else if (green["words"].includes(word)) {ColorizedPhrase += " " + word.fontcolor(green["color"]);} 
 
-                else if (red.includes(word)) {ColorizedPhrase += " " + word.fontcolor("#F9264C");}
+                else if (red["words"].includes(word)) {ColorizedPhrase += " " + word.fontcolor(red["color"]);}
 
                 else {ColorizedPhrase += " " + word.fontcolor("#5CD9EF");}
 
@@ -128,32 +144,23 @@ $(window).on('load', function() {
 
         });
     });
-    // Scroll to About me
-    $("#aboutme-icon").click(function(e) {
+    // Scroll to Sections according to href tag.
+    $('a[href*="#"]:not([href="#"])').click(function(e) {
+        
+        var section = ($(this).attr('href'));
 
         e.preventDefault();
         e.stopPropagation();
 
-        if (!($(document).scrollTop() == $("#section-aboutme").offset().top - HeaderHeight)) {
+        if (!($(document).scrollTop() == $(section).offset().top - HeaderHeight)) {
 
             $('html, body').velocity('scroll', {
                 duration: 800,
-                offset: $("#section-aboutme").offset().top - (HeaderHeight*2),
+                offset: $(section).offset().top - (HeaderHeight*2),
                 easing: 'ease-in-out'
             });
         }
-    });
-    $("#project-icon").click(function(e) {
 
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (!($(document).scrollTop() == $("#section-project").offset().top - HeaderHeight)) {
-            $('html, body').velocity('scroll', {
-                duration: 800,
-                offset: $("#section-project").offset().top - (HeaderHeight*2),
-                easing: 'ease-in-out'
-            });
-        }
     });
+
 });
