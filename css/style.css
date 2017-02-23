@@ -14,26 +14,34 @@
 }
 
 @keyframes icon-pulse{
-	0% { transform: scale(0.8); }
-	50% { transform: scale(1.2); }
-	100% { transform: scale(1); }
+	0% { transform: scale3d(0.8, 0.8, 1); }
+	50% { transform: scale3d(1.2, 1.2, 1); }
+	100% { transform: scale3d(1, 1, 1); }
 }
 @-webkit-keyframes icon-pulse{
-	0% { transform: scale(0.8); }
-	50% { transform: scale(1.2); }
-	100% { transform: scale(1); }
+	0% { transform: scale3d(0.8, 0.8, 1); }
+	50% { transform: scale3d(1.2, 1.2, 1); }
+	100% { transform: scale3d(1, 1, 1); }
 }
 @-moz-keyframes icon-pulse{
-	0% { transform: scale(0.8); }
-	50% { transform: scale(1.2); }
-	100% { transform: scale(1); }
-}
-@keyframes right-arm-movement{
-	0% { transform: rotate(0deg); }
-	50% { transform: rotate(90deg); }
-	100% { transform: rotate(-30deg); }
+	0% { transform: scale3d(0.8, 0.8, 1); }
+	50% { transform: scale3d(1.2, 1.2, 1); }
+	100% { transform: scale3d(1, 1, 1); }
 }
 
+@-webkit-keyframes dash {
+	0% {
+		stroke-dashoffset: 400;
+	}
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+@-webkit-keyframes headtilt {
+	0% { transform: rotate(10deg) }
+	50% { transform: rotate(-10deg) }
+	100% { transform: rotate(10deg) }
+}
 /* ----- GLOBAL -----*/
 html {
     overflow-x: hidden;
@@ -68,6 +76,43 @@ section {
     -webkit-animation: blink 1s infinite;
     -moz-animation: blink 1s infinite;
     animation: blink 1s infinite;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+/* ----- LOGO PARTS -----*/
+
+#logo-container {
+	position: absolute;
+	bottom: -1px;
+	left: 5%;
+	min-width: 100px;
+	min-height: 100px; 
+	width: 10%;
+	height: 18%;
+}
+#logo-svg-box {
+	overflow: visible;
+	height: 100%;
+	display: block;
+	
+}
+.morphable:hover {
+
+}
+.head-animate {
+    
+    -webkit-transform-origin: 40px 30px;
+
+    animation-name: headtilt;
+    animation-duration: 5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
 }
 /* ----- SECTION HEADER -----*/
 #header {
@@ -111,47 +156,6 @@ section {
 
 	margin-left: 7px;
 	float: right;
-}
-/* ----- LEGO PARTS -----*/
-
-#lego-wrapper {
-	
-	border: 2px solid yellow;
-	width: 50px;
-	height: 80px;
-	position: absolute;
-}
-.lego-move {
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-name: right-arm-movement; 
-    -webkit-animation-duration: 800ms;
-}
-
-#lego-body {
-	position: absolute;
-	left: 12px;
-	width: 23px;
-	height: 53px;
-	content:url('../image/sprite/body.png');
-}
-.lego-arm {
-	
-	position: absolute;
-	transform-origin: 5px 5px;
-	left: 18px;
-	top: 25px;
-	width: 27px;
-	height: 30px;
-	content:url('../image/sprite/arm.png');
-}
-.lego-leg {
-	position: absolute;
-	transform-origin: 7px 7px;
-	bottom: 0px;
-	left: 16px;
-	width: 18px;
-	height: 31px;
-	content:url('../image/sprite/leg.png');
 }
 /* ----- SECTION FOOTER -----*/
 #footer {
@@ -243,7 +247,7 @@ section {
 
 }
 .section-wrapper h1{
-	transition: opacity 1000ms;
+	transition: opacity 1s;
 	font-family: 'Ubuntu Mono', monospace;
 	font-size: 2em;
 	opacity: 0;
@@ -322,40 +326,10 @@ section {
 /* ----- SECTION PROJECT -----*/
 #section-project {
 	
-	height: 1000px;
-
-}
-#section-project div{
-	
-	/*border: 1px solid black;*/
-
-}
-.project-inner {
-
-	margin: 0 auto;
 	width: 80%;
-	display: block;
-}
-.project-left-container {
-	
-	margin-left: 5%;
-	width: 20%;
-	float: left;
-	height: 500px;
+	left: 50%;
+	transform: translateX(-50%);
 	display: inline-block;
-
-}
-.project-right-container {
-	
-	float: right;
-	margin-right: 5%;
 	height: 1000px;
-	width: 66%;
-	display: inline-block;
 
-}
-#project-timeline {
-
-	margin-top: 20px;
-	text-align: justify;
 }
