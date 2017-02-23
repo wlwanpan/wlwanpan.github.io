@@ -100,8 +100,8 @@ path {
 	position: absolute;
 	bottom: -1px;
 	left: 5%;
-	min-width: 100px;
-	min-height: 100px; 
+	min-width: 50px;
+	min-height: 50px; 
 	width: 10%;
 	height: 18%;
 	overflow: visible !important;
@@ -111,13 +111,9 @@ path {
 	height: 100%;
 	
 }
-#c1-c7 {
+#fetus {
 	fill: #000000;
 	stroke: #000000;
-}
-#c1 {
-	fill: #191919;
-	stroke: #191919;
 }
 .morphable {
 
