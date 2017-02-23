@@ -1,75 +1,76 @@
+var morphState = 'cat';
 
-var setup = function() {
+var TriangleMorphing = function() {
 
-    var cat = Snap("#c1-c7");
-    var logo = Snap("#l1-l7");
+    var catPath = Snap("#c1-c7").selectAll('path');
+    var logoPath = Snap("#l1-l7").selectAll('path');
 
-    var catPath = cat.selectAll('path');
-    var logoPath = logo.selectAll('path');
-    var scatterDuration = 800;
-    var fixationDuration = 700;
+    var scatterDuration = 1000; // Time duration of scatter animation
+    var scatterBuffer = 90; // Degree [range(0, 360)] of rotation on (x, y, z) axes
+    var fixationDuration = 700; // Time duration of merging animation
 
-    $('.to-logo').click(function() {
+    $('.head-animate').click(function() {
 
-        console.log("d d," * 3);
+        if (morphState != 'logo') {
+            var logoContainer = $("#logo-container");
+            var svgContainer = $("#logo-svg-box")[0];
+           
+            logoContainer.css('min-height', '50px').css('min-width', '50px');
+            logoContainer.css('z-index', '9999');
+            
+            // First Scatter Animation
+            scatter(scatterDuration);
 
-        var logoContainer = $("#logo-container");
-        var svgContainer = $("#logo-svg-box")[0];
-
-        logoContainer.css('min-height', '50px');
-        logoContainer.css('min-width', '50px');
-        logoContainer.css('z-index', '9999');
-        
-        // First Scatter Animation
-        scatter(svgContainer);
-        logoContainer.velocity({
-            width: '35%', 
-            height: '35%',
-        }, {
-            easing: "easeIn",
-            duration: scatterDuration,
-        });
-        // Second Queue Morph+fix Logo
-        setTimeout(function() {
-            transmutate(svgContainer);
             logoContainer.velocity({
-                top: "0px",
-                left: "5.5%",
-                height: '50px',
-                width: '50px',
+                width: '10%',
+                left: "5%",
             }, {
-                duration: fixationDuration,
-                easing: "easeInQuad",
-                complete: function () {
-                    svgContainer.setAttribute('viewBox', "0 0 77.7 77");
-                    $("#head").removeClass('head-animate');
-                    $(this).css('position', 'fixed');
-                }
+                duration: scatterDuration,
             });
-        }, scatterDuration);
+            // Second Queue Morph+fix Logo
+            setTimeout(function() {
+                transmutate();
+                logoContainer.velocity({
+                    top: "0px",
+                    height: '50px',
+                    width: '50px',
+                }, {
+                    duration: fixationDuration,
+                    easing: "easeInQuad",
+                    complete: function () {
+                        $("#head").removeClass('head-animate');
+                        $("#tail").removeClass('tail-animate');
+                        $(this).css('position', 'fixed');
+                        morphState = 'logo';
+                    }
+                });
+            }, scatterDuration);
+        } else {console.log("already logo");}
     });
-    var scatter = function (box) {
-        box.setAttribute('viewBox', "0 0 100 100");
+    var scatter = function (float) {
+
         for (var i = 0; i < 7; i++) {
-            var angle = (Math.random() * (90 + 90) - 90);
-            catPath[i].animate({transform: "t 0 0, r" + angle + "50% 50%," + angle + "50% 50%, 0" }, 
-                                scatterDuration, mina.easeInOut);
+
+            var angle = (Math.random() * (scatterBuffer + scatterBuffer) - scatterBuffer);
+            var finalMatrix = "t 0 -20, r" + angle + "0% 0%" ;
+            catPath[i].animate({transform: finalMatrix}, float, mina.easeIn);
         }
     }
-    var transmutate = function (box) {
+    var transmutate = function () {
         
         for (var i = 0; i < 7; i++) {
-            catPath[i].animate({transform: "t 0, 0", d: logoPath[i].attr("d")}, fixationDuration, mina.easeIn);
+            catPath[i].animate({transform: "t 0, 0", d: logoPath[i].attr("d")}, fixationDuration, mina.easeOut);
         }
     }
 }
 $(window).on('load', function() {
 
     var HeaderHeight = 50;
-	
+    var Morphable = $('#c1-c7 path');
+
 	$('#intro-container').css('height', window.innerHeight-HeaderHeight);
 
-    setup();
+    TriangleMorphing(); // Call logo transformation
 
 	$('.tlt').textillate({
         initialDelay: 0,
@@ -78,10 +79,11 @@ $(window).on('load', function() {
     //introduction phrases 
 	$(function(){
         $(".command-typing").typed({
-            strings: ["Welcome ^200 to my personal website.", "I like to ^500 animate stuff ^200 on the web.", "And if you don't like the cat :(", " Hit its head ..."],
-            typeSpeed: 40,
-            startDelay: 1200,
-            backSpeed: 5 ,
+            strings: ["Welcome ^200 to my personal website.", "I like to ^300 animate stuff ^200 on the web.", "Being touched on its head scares him"],
+            typeSpeed: 35,
+            loop: true,
+            startDelay: 1700,
+            backSpeed: 1,
             backDelay: 2000,
             showCursor: false,
             contentType: 'html',
@@ -147,12 +149,14 @@ $(window).on('load', function() {
 
         if (ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject) {
 
-            //$('#logo-svg-box g').css('fill', '#ffffff !important;');
+            if (morphState == "logo") {Morphable.css('fill', '#ffffff').css('stroke', '#ffffff');}
             $("#icon-container a").css('color', 'white');
             $("#header").css('background', '#191919');
             $("#icon-container").css('border-bottom', '2px solid white');
 
         } else {
+
+            if (morphState == "logo") {Morphable.css('fill', '#000000').css('stroke', '#000000');}
             $("#icon-container a").css('color', 'black');
             $("#header").css('background', '#ffffff');
             $("#icon-container").css('border-bottom', '2px solid black');

@@ -42,6 +42,13 @@
 	50% { transform: rotate(-10deg) }
 	100% { transform: rotate(10deg) }
 }
+@-webkit-keyframes tailtilt {
+	0% { transform: rotate(10deg) }
+	50% { transform: rotate(-10deg) }
+	100% { transform: rotate(10deg) }
+}
+
+
 /* ----- GLOBAL -----*/
 html {
     overflow-x: hidden;
@@ -60,6 +67,10 @@ section {
 	
 	display: table-cell;
 
+}
+path {
+	-webkit-transition: fill 500ms;
+    transition: fill 500ms;
 }
 .anti-blur {
 	-webkit-font-smoothing: antialiased;
@@ -93,26 +104,41 @@ section {
 	min-height: 100px; 
 	width: 10%;
 	height: 18%;
+	overflow: visible !important;
 }
 #logo-svg-box {
-	overflow: visible;
+	overflow: inherit;
 	height: 100%;
-	display: block;
 	
 }
-.morphable:hover {
+#c1-c7 {
+	fill: #000000;
+	stroke: #000000;
+}
+#c1 {
+	fill: #191919;
+	stroke: #191919;
+}
+.morphable {
 
 }
 .head-animate {
     
     -webkit-transform-origin: 40px 30px;
-
     animation-name: headtilt;
     animation-duration: 5s;
     animation-timing-function: ease-in;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+.tail-animate {
 
+	-webkit-transform-origin: 55px 100%;
+    animation-name: tailtilt;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: forward;
 }
 /* ----- SECTION HEADER -----*/
 #header {
@@ -212,11 +238,12 @@ section {
 #command-container {
 
 	position: relative;
-	text-align: center;
+	/*text-align: center;*/
+	margin: 0 auto;
 	top: 37%;
 	height: 15px;
-	width: 100%;
-	margin: 0 auto;
+	width: 45%;
+
 }
 #command-container h1 {
 	font-family: 'Ubuntu Mono', monospace;

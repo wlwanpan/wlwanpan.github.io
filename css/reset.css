@@ -104,11 +104,11 @@ input, select {
 
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-width : 320px) and (max-width : 480px) {
-    #intro-name h1 {
+    #intro-container h1 {
         font-size: 1em;
     }
-    #intro-name h2 {
-        font-size: 3.5em;
+    #intro-container h2 {
+        font-size: 3em;
     }
 }
 @media only screen and (max-width : 768px) {
