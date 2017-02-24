@@ -3,30 +3,46 @@ var TriangleMorphing = function() {
 
     var self = {
             
-        fetusPath : Snap("#fetus").selectAll('path'),
-        scatterDuration : 800, // Time duration of scatter animation
+        fetus : Snap("#fetus"),
+        fetusPath : null,
+        logoContainer : $("#logo-container"),
+        scatterDuration : 0, // Time duration of scatter animation
         scatterBuffer : 90, // Degree [range(0, 360)] of rotation on (x, y, z) axes
-        fixationDuration : 500, // Time duration of merging animation
-        morphState : 'cat',
+        fixationDuration : 0, // Time duration of merging animation
+        morphState : 'logo',
         morphAble : true,
-        data : {'logo':[ '50px', '50px', '5%', '0%', '+=0px', '50px', '50px', '1000', 'fixed'], 
-                 'cat': [ '10%', '18%', '5%', '82.1%', '0%', '100px', '100px', '0', 'absolute']},
+        data : {'logo': { 'position' : [ '70px', '70px'], 'holder' : $("#logo-placeholder") }, 
+                'cat' : { 'position' : [ '10%', '18%'], 'holder' : $("#cat-placeholder") },
+                'fix' : { 'position' : ['50px', '50px'], 'holder' : $("#logo-fix-placeholder") }
+                },
 
     }
     self.init = function () {
-        self.transmutate('cat');
+
+        self.fetusPath = self.fetus.selectAll('path');
         // transmutate Cat->Logo
+        self.transition('logo');
+
+        self.scatterDuration = 800;
+        self.fixationDuration = 500;
+        // Only application when morphable and current state is cat.
         $('.head-animate').click(function() {
 
             if (self.morphState == 'cat' && self.morphAble) {self.transition('logo');}
             else {}
 
         });
-        //
+        // Only applicable when morphable and current state is logo.
         $('.morphable').click(function() {
 
             if (self.morphState == 'logo' && self.morphAble) {self.transition('cat')} 
-            else {};
+            else {}
+        });
+        // Can be applied anytime
+        self.data['fix']['holder'].click(function () {
+            
+            self.transition('fix');
+
         });
     }
 
@@ -41,7 +57,8 @@ var TriangleMorphing = function() {
         }
         setTimeout( function () {
 
-            var morphTarget = Snap("#"+toState).selectAll('path');
+            if (toState == 'fix') {var morphTarget = Snap("#logo").selectAll('path');}
+            else {var morphTarget = Snap("#"+toState).selectAll('path');}
 
             for (var i = 0; i < 7; i++) {
 
@@ -51,49 +68,88 @@ var TriangleMorphing = function() {
         }, self.scatterDuration);
  
     }
+    self.transitionSet = function () {
+
+        if (self.morphState == 'logo') {
+            // logo Adjustments
+            self.data[self.morphState]['holder'].append(self.logoContainer);
+            self.logoContainer.css('top', '0%').css('left', 'inherit');
+
+            $('#head').removeClass('head-animate');
+            $('#tail').removeClass('tail-animate');
+            self.fetus.addClass('logo-animate');
+
+        } else if (self.morphState == 'cat') {
+            // cat Adjustments
+            self.logoContainer.css('bottom', '-1px').css('top', 'auto').css('left', '5%');
+            $('#head').addClass('head-animate');
+            $('#tail').addClass('tail-animate');
+
+        } else if (self.morphState == 'fix'){
+            
+            self.logoContainer.css('position', 'fixed').css('top', '0%').css('left', '5%');    
+            $('#head').removeClass('head-animate');
+            $('#tail').removeClass('tail-animate');
+
+        } else {
+            
+        }
+    }
     self.transition = function (toState) {
 
-        var logoContainer = $("#logo-container");
-        // Data stored as: width, height, left, top, bottom, min-height, min-width, z-index, position
-
         var selectedLib = self.data[toState];
-        //logoContainer.css('position', selectedLib[8]);
+
+        if (toState == 'logo') {
+
+
+        } else {
+
+            var holder = self.data[self.morphState]['holder'];
+            $('body').append(self.logoContainer);
+            self.logoContainer.css('top', holder.offset().top).css('left', holder.offset().left);
+            self.fetus.removeClass('logo-animate');
+
+            if (toState == 'cat'){
+
+
+            } else if (toState == 'fix'){
+                
+                self.logoContainer.css('z-index', '9999');
+
+            }
+
+        } 
+
         if (selectedLib == undefined) {return}
         else {
+            self.transmutate(toState);
+            self.logoContainer.velocity({
+              
+                width: selectedLib['position'][0],
+                height: selectedLib['position'][1],
+                left: selectedLib['holder'].offset().left,
+                top: selectedLib['holder'].offset().top,
 
-            logoContainer.velocity({
-                position: ['absolute', 'absolute'],
-                width: selectedLib[0],
-                height: selectedLib[1],
-                top: selectedLib[3],
-                zIndex: selectedLib[7],
             }, {
+                easing: 'easeInOut',
                 duration: self.fixationDuration,
                 delay: self.scatterDuration,
                 complete: function () {
-                    $(this).css('position', selectedLib[8]);
                     self.morphState = toState;
+                    self.transitionSet();
                 }
             });
-            if (toState == 'logo') {
-                $('#head').removeClass('head-animate');
-                $('#tail').removeClass('tail-animate');
-            } else if (toState == 'cat') {
-                $('#head').addClass('head-animate');
-                $('#tail').addClass('tail-animate');
-            }
-            self.transmutate(toState);
+            //self.transmutate(toState);
         }
     }
+    self.init();
     return self;
 }
 $(window).on('load', function() {
 
     var HeaderHeight = 50;
-
-    var Fetus = $('#fetus');
     var TriObj = TriangleMorphing();
-    TriObj.init();
+    var fetus = $("#fetus");
 
 	$('#intro-container').css('height', window.innerHeight-HeaderHeight);
 
@@ -105,7 +161,8 @@ $(window).on('load', function() {
     //introduction phrases 
 	$(function(){
         $(".command-typing").typed({
-            strings: ["Welcome ^200 to my personal website.", "I like to ^300 animate stuff ^200 on the web.", " To get rid of the cat, ", "simply touch its head ..."],
+            strings: ["Welcome ^200 to my personal website.", "I like to ^300 animate stuff ^200 on the web.", "If you like cat, ", 
+            "Click on the 'W' ..."],
             typeSpeed: 35,
             loop: true,
             startDelay: 1700,
@@ -175,16 +232,17 @@ $(window).on('load', function() {
 
         if (ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject) {
 
-            if (TriObj.morphState == "logo") {Fetus.css('fill', '#ffffff').css('stroke', '#ffffff');}
-            TriObj.morphAble = false;
+            if (TriObj.morphState == "fix") {fetus.css('fill', '#ffffff').css('stroke', '#ffffff');}
 
+            //TriObj.transition('fix');
+            TriObj.morphAble = false;
             $("#icon-container a").css('color', 'white');
             $("#header").css('background', '#191919');
             $("#icon-container").css('border-bottom', '2px solid white');
 
         } else {
 
-            if (TriObj.morphState == "logo") {Fetus.css('fill', '#000000').css('stroke', '#000000');}
+            if (TriObj.morphState == "fix") {fetus.css('fill', '#000000').css('stroke', '#000000');}
             TriObj.morphAble = true;
 
             $("#icon-container a").css('color', 'black');

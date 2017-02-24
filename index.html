@@ -29,12 +29,13 @@
 
 <body>
 
+	<div id="cat-placeholder"></div>
 	<div id="logo-container">
 		<!-- viewBox preserveAspectRatio (align=>Point of Referencez, ) -->
 		<svg id="logo-svg-box" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77.7 77" preserveAspectRatio="xMidYMax meet">
 
 			<!-- CAT -->
-			<g id="fetus" class="morphable" stroke-linejoin="round" stroke-linecap="round" stroke-linecap="round">
+			<g id="fetus" class="morphable logo-animate" stroke-linejoin="round" stroke-linecap="round" stroke-linecap="round">
 				<g id="tail" class="tail-animate">
 					<path id="c2" d="M37 45.8h4.6l-2 4z"/>
 				</g>
@@ -77,7 +78,8 @@
 
 	
 	<section id="header">
-		<div id="icon-container"> 
+		<div id="icon-container">
+			<div id="logo-fix-placeholder"></div> 
 			<div class="icon vertical-align">
 				<a href='https://github.com/wlwanpan' target="_blank">
 					<i class="fa fa-git fa-2x main-icon" aria-hidden="true"></i>
@@ -106,7 +108,8 @@
 		<div id="intro-container">
 
 			<div id="intro-name" class="">
-				<h1 class="intro-name-font anti-blur">Hello, I'm </h1><h2 class="tlt intro-name-font anti-blur"> Warren Wan!</h2>
+				<h1 class="intro-name-font anti-blur">Hello, I'm </h1>
+				<h2 class="tlt intro-name-font anti-blur"><div id="logo-placeholder"></div>arren Wan!</h2>
 			</div>
 			<div id="command-container">
 				<h1 id="h1-fix" class="anti-blur">Cloud@internet-me:~$<h1 class="anti-blur command-typing"></h1><h1 class="typed-cursor">|</h1></h1>
