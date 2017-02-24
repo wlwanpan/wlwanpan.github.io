@@ -48,9 +48,10 @@
 	100% { transform: rotate(10deg) }
 }
 @-webkit-keyframes tinkle {
-	0% { transform: rotate(2deg) }
-	50% { transform: rotate(-2deg) }
-	100% { transform: rotate(2deg) }
+	0% { transform: translate3d(0px, 0, 0) }
+	5% { transform: translate3d(-2px, 0, 0) }
+	10% { transform: translate3d(2px, 0, 0) }
+	15%, 100% { transform: translate3d(0px, 0, 0) }
 }
 
 /* ----- GLOBAL -----*/
@@ -114,7 +115,7 @@ path {
 	position: relative;
 	width: 70px;
 	height: 70px;
-	background-image: url('../image/sprite/logoshadow.SVG');
+	background-image: url('../image/sprite/logoshadow.svg');
 	background-size: 70px 70px;
 	display: inline-block;
 }
@@ -146,11 +147,11 @@ path {
 }
 .logo-animate {
 	-webkit-transform-origin: 50% 50%;
-    animation-name: tinkle-C; /* REMOVE C TO ACTIVATE */
-    animation-duration: 3s;
+    animation-name: tinkle; /* REMOVE C TO ACTIVATE */
+    animation-duration: 2s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
-    animation-direction: forward;
+    animation-direction: alternate-reverse;
 }
 .head-animate {
     
