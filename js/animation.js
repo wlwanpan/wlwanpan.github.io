@@ -22,6 +22,7 @@ var TriangleMorphing = function() {
                         'holder' : $("#logo-fix-placeholder"),
                         'snapPath' : Snap("#cat").selectAll('path')}
                 },
+        catPart : {'body' : $("#c1"), 'head' : $('#head'), 'tail' : $('#tail')},
 
     }
     self.init = function () {
@@ -30,8 +31,8 @@ var TriangleMorphing = function() {
         // transmutate Cat->Logo
         self.transition(self.morphState);
 
-        self.scatterDuration = 600;
-        self.fixationDuration = 400;
+        self.scatterDuration = 500;
+        self.fixationDuration = 300;
         // Only application when morphable and current state is cat.
         $('.head-animate').hover(function(e) {
             e.stopPropagation();
@@ -72,31 +73,31 @@ var TriangleMorphing = function() {
     }
     self.transitionSet = function (toState) {
 
-        if (toState == 'logo') {
-            // logo Adjustments
-            self.data[toState]['holder'].append(self.logoContainer);
-            self.logoContainer.css('position', 'absolute').css('top', '0%').css('left', 'inherit');
-
-            $('#head').removeClass('head-animate');
-            $('#tail').removeClass('tail-animate');
-            self.fetus.addClass('logo-animate');
-
-        } else if (toState == 'cat') {
+        if (toState == 'cat') {
             // cat Adjustments
-            self.logoContainer.css('bottom', '-1px').css('top', 'auto').css('left', '5%');
-            $('#head').addClass('head-animate');
-            $('#tail').addClass('tail-animate');
-
-        } else if (toState == 'fix'){
-            
-            self.data[toState]['holder'].append(self.logoContainer);
-            self.logoContainer.css('position', 'fixed').css('top', '0%').css('left', '5%');    
-            $('#head').removeClass('head-animate');
-            $('#tail').removeClass('tail-animate');
+            self.logoContainer.css('bottom', '-1px').css('top', 'auto').css('left', '5%').css('z-index', 'inherit');
+            self.catPart['head'].addClass('head-animate');
+            self.catPart['tail'].addClass('tail-animate');
 
         } else {
-            
-        }
+
+            self.data[toState]['holder'].append(self.logoContainer);
+            self.catPart['head'].removeClass('head-animate');
+            self.catPart['tail'].removeClass('tail-animate');
+
+            if (toState == 'fix'){
+                // logo fix Adjustments
+                self.logoContainer.css('position', 'inherit').css('top', '0%').css('left', 'inherit').css('z-index', 'inherit');    
+
+            } else if (toState == 'logo') {
+                // logo Adjustments
+                self.logoContainer.css('position', 'absolute').css('top', '0%').css('left', 'inherit');
+                self.fetus.addClass('logo-animate');
+            }
+
+        } 
+
+        self.morphAble = true;
     }
     self.transition = function (toState) {
 
@@ -115,7 +116,6 @@ var TriangleMorphing = function() {
 
             } else if (toState == 'fix'){
                 
-                //self.logoContainer.css('z-index', '9999');
 
             }
         } 
@@ -123,6 +123,7 @@ var TriangleMorphing = function() {
         else {
 
             self.morphAble = false;
+            self.clickable = false;
             self.transmutate(toState); // Starts Morphing Function
             self.logoContainer.velocity({ // Div transition and final setup
               
@@ -137,7 +138,6 @@ var TriangleMorphing = function() {
                 delay: self.scatterDuration,
                 complete: function () {
                     self.clickable = true;
-                    self.morphAble = true;
                     self.morphState = toState;
                     self.transitionSet(toState);
                 }
@@ -228,16 +228,20 @@ $(window).on('load', function() {
         var SectionProject = $("#section-project").offset().top - HeaderHeight;
         var buffer = window.innerHeight/2;
         // section about me
-        if (ScrollPosn > SectionAboutme-buffer) {
+        if (ScrollPosn == 0 && TriObj.morphAble && TriObj.morphState == "fix") {
+
+            TriObj.transition('logo');
+
+        } else if (ScrollPosn > SectionAboutme-buffer) { 
 
             AboutmeH1.css('opacity', 1);
 
-        } 
-        else {
+        } else {
 
             AboutmeH1.css('opacity', 0);
-    
+
         }
+
         if (ScrollPosn > SectionProject-buffer) {ProjectH1.css('opacity', 1);}
         else {ProjectH1.css('opacity', 0);}
 
@@ -245,7 +249,7 @@ $(window).on('load', function() {
 
             if (TriObj.morphState == "fix") {fetus.css('fill', '#ffffff').css('stroke', '#ffffff');}
 
-            TriObj.morphAble = false;
+            TriObj.morphAble = false; // Prevent Morphing Propagation
             IconContainer.find('a').css('color', 'white');
             Header.css('background', '#191919');
             IconContainer.css('border-bottom', '2px solid white');
@@ -253,7 +257,7 @@ $(window).on('load', function() {
         } else {
 
             if (TriObj.morphState == "fix") {fetus.css('fill', '#000000').css('stroke', '#000000');}
-            TriObj.morphAble = true;
+            TriObj.morphAble = true; // Reset Morphing Status
 
             IconContainer.find('a').css('color', 'black');
             Header.css('background', '#ffffff');
@@ -309,12 +313,10 @@ $(window).on('load', function() {
                 TriObj.clickable = false;
                 var delay = 0;
 
-                if (TriObj.morphState == 'logo' && section != "#intro-container") {
+                if (TriObj.morphAble && TriObj.morphState == 'logo' && section != "#intro-container") {
                     TriObj.transition('fix');
                     delay = TriObj.scatterDuration + TriObj.fixationDuration;
-                } else if (TriObj.morphState == 'fix' && section == "#intro-container") {
-                    TriObj.transition('logo');
-                    console.log("bad");
+
                 } else {}
 
                 $('html, body').velocity('scroll', {

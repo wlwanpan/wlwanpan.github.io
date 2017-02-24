@@ -115,7 +115,7 @@ path {
 	position: relative;
 	width: 70px;
 	height: 70px;
-	background-image: url('../image/sprite/logoshadow.svg');
+	background-image: url('../image/sprite/logoshadowtest.svg');
 	background-size: 70px 70px;
 	display: inline-block;
 }
@@ -132,7 +132,7 @@ path {
 	min-height: 50px; 
 	width: 10%;
 	height: 18%;
-	z-index: 9999;
+	z-index: 999;
 	overflow: visible !important;
 }
 #logo-svg-box {
@@ -219,7 +219,6 @@ path {
 /* ----- SECTION FOOTER -----*/
 #footer {
 
-	/*transition: color 800ms;*/
 	bottom: 0%;
 	background: #ffffff;
 	z-index: 999;
@@ -231,8 +230,38 @@ path {
 #footer-content {
 	width: 90%;
 	margin: 0 auto;
+	text-align: center;
 	height: 50px;
 	border-top: 2px solid black;
+}
+#footer-content p {
+
+	display: inline-block;
+	margin-top: 10px;
+	color: #000000;
+}
+#footer-icon-container {
+	display: inline-block;
+	float: right;
+}
+#footer-content a {
+
+	margin-right: 10px;
+    color: #000000;
+    -webkit-transition: color 800ms;
+	transition: color 800ms;
+}
+.fa-steam:hover {
+	color: #536772;
+}
+.fa-linkedin:hover {
+	color: #0077B5;
+}
+.fa-facebook:hover {
+	color: #66cccc;
+}
+.fa-envelope:hover {
+	color: #5b63fe;
 }
 /* ----- SECTION INTRO -----*/
 #intro-container {
