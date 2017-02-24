@@ -33,25 +33,19 @@ var TriangleMorphing = function() {
         self.scatterDuration = 600;
         self.fixationDuration = 400;
         // Only application when morphable and current state is cat.
-        $('.head-animate').click(function(e) {
+        $('.head-animate').hover(function(e) {
             e.stopPropagation();
             if (self.morphState == 'cat' && self.morphAble) {self.transition('logo');}
             else {}
 
         });
         // Only applicable when morphable and current state is logo.
-        $('.morphable').click(function(e) {
+        self.fetus.hover(function(e) {
             e.stopPropagation();
             if (self.morphState == 'logo' && self.morphAble) {self.transition('cat')} 
             else {}
         });
-        // Can be applied anytime
-        self.data['fix']['holder'].click(function (e) {
-            e.stopPropagation();
-            if (self.morphState == 'fix') {self.transition('logo')}
-            else {self.transition('fix')}
 
-        });
     }
 
     self.transmutate = function (toState) {
@@ -120,13 +114,14 @@ var TriangleMorphing = function() {
 
             } else if (toState == 'fix'){
                 
-                self.logoContainer.css('z-index', '9999');
+                //self.logoContainer.css('z-index', '9999');
 
             }
         } 
         if (selectedLib == undefined) {return}
         else {
 
+            self.morphAble = false;
             self.transmutate(toState); // Starts Morphing Function
             self.logoContainer.velocity({ // Div transition and final setup
               
@@ -141,6 +136,7 @@ var TriangleMorphing = function() {
                 delay: self.scatterDuration,
                 complete: function () {
                     self.clickable = true;
+                    self.morphAble = true;
                     self.morphState = toState;
                     self.transitionSet(toState);
                 }
@@ -165,13 +161,13 @@ $(window).on('load', function() {
     //introduction phrases 
 	$(function(){
         $(".command-typing").typed({
-            strings: ["Welcome ^200 to my personal website.", "I like to ^300 animate stuff ^200 on the web.", "If you like cat, ", 
-            "Click on the 'W' ..."],
+            strings: ["Welcome ^200 to my personal website.", "I like to ^100 animate stuff ^200 on the web.", "If you like cat, ", 
+            " Hover over the shaking 'W' ...", " Hover over its head to make it go :("],
             typeSpeed: 35,
             loop: true,
-            startDelay: 1700,
+            startDelay: 1200,
             backSpeed: 1,
-            backDelay: 2000,
+            backDelay: 1200,
             showCursor: false,
             contentType: 'html',
         });
@@ -266,7 +262,7 @@ $(window).on('load', function() {
     // Coloring Resume-section
     var white = {color: "#ffffff", words: [';',':', ',', 'and', '{', '}', '.', '(', ')', '..']};
     var green = {color: "#A6E22E", words: ['Skill', 'Education', 'Experience', 'Certification', 'Awards']};
-    var red = {color: "#F9264C", words: ['Python', 'Front-end', 'Computer', 'Science', '*']};
+    var red = {color: "#F9264C", words: ['Email', 'Python', 'Front-end', 'Computer', 'Science', '*']};
     var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'Aug', 'Dec', '2012', '2014', '2016']};
 
     $('.bracket-wrapper').each(function() {
