@@ -153,11 +153,6 @@ $(window).on('load', function() {
 
 	$('#intro-container').css('height', window.innerHeight-HeaderHeight);
 
-	//$('.tlt').textillate({
-    //    initialDelay: 0,
-    //    in: {effect: 'bounceInDown'}
-	//});
-
     //introduction phrases 
 	$(function(){
         $(".command-typing").typed({
@@ -300,6 +295,7 @@ $(window).on('load', function() {
             });
         }
     });
+    $('html').show();
 });
 $(window).resize(function() {
 
