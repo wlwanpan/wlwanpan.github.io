@@ -175,7 +175,7 @@ $(window).on('load', function() {
             contentType: 'html',
         });
     });
-
+    var rotateClass = $('.rotate');
     // Toggle to Minimize or Maximize All Resume Brackets
     $('#bracket-toggle-button').on('click', function(){
         // toggle off => display
@@ -184,7 +184,7 @@ $(window).on('load', function() {
             $(this).removeClass('fa-toggle-on');
             $(this).addClass('fa-toggle-off');
 
-            $('.rotate').each(function() {
+            rotateClass.each(function() {
                 if ($(this).hasClass('rotate-selected')) {$(this).trigger('click');}
             });
 
@@ -193,14 +193,14 @@ $(window).on('load', function() {
             $(this).removeClass('fa-toggle-off');
             $(this).addClass('fa-toggle-on');
 
-            $('.rotate').each(function() {
+            rotateClass.each(function() {
                 if (!$(this).hasClass('rotate-selected')) {$(this).trigger('click');}
             });
 
         }
     });
     // Minimize or Maximize Resume Brackets
-    $('.rotate').on('click', function(){
+    rotateClass.on('click', function(){
         //$(this).removeClass('selected');
         var bracket = $(this).parent().parent().find('.bracket-closing');
         var bracketp = $(this).parent().find('.closing-bracket-p');
@@ -313,7 +313,7 @@ $(window).on('load', function() {
                 TriObj.clickable = false;
                 var delay = 0;
 
-                if (TriObj.morphAble && TriObj.morphState == 'logo' && section != "#intro-container") {
+                if (TriObj.morphAble && TriObj.morphState != 'fix' && section != "#intro-container") {
                     TriObj.transition('fix');
                     delay = TriObj.scatterDuration + TriObj.fixationDuration;
 
