@@ -31,8 +31,8 @@ var TriangleMorphing = function() {
         // transmutate Cat->Logo
         self.transition(self.morphState);
 
-        self.scatterDuration = 500;
-        self.fixationDuration = 300;
+        self.scatterDuration = 700;
+        self.fixationDuration = 400;
         // Only application when morphable and current state is cat.
         $('.head-animate').hover(function(e) {
             e.stopPropagation();
@@ -50,13 +50,14 @@ var TriangleMorphing = function() {
     }
 
     self.transmutate = function (toState) {
-        
+
         for (var i = 0; i < 7; i++) {
 
             var angle = (Math.random() * (self.scatterBuffer + self.scatterBuffer) - self.scatterBuffer);
-            var finalMatrix = "t 0 0, r" + angle + "0% 0%" ;
+            var finalMatrix = "t 0 0 , r" + angle + "0% 0%" ;
     
             self.fetusPath[i].animate({transform: finalMatrix}, self.scatterDuration, mina.easeIn);
+
         }
         setTimeout( function () {
 
@@ -87,7 +88,7 @@ var TriangleMorphing = function() {
 
             if (toState == 'fix'){
                 // logo fix Adjustments
-                self.logoContainer.css('position', 'inherit').css('top', '0%').css('left', 'inherit').css('z-index', 'inherit');    
+                self.logoContainer.css('position', 'inherit').css('top', '0%').css('left', 'inherit');    
 
             } else if (toState == 'logo') {
                 // logo Adjustments
@@ -114,10 +115,9 @@ var TriangleMorphing = function() {
 
             if (toState == 'cat'){
 
-            } else if (toState == 'fix'){
-                
-
-            }
+            } else if (toState == 'fix'){                
+                self.logoContainer.css('z-index', '999');
+            } else {}
         } 
         if (selectedLib == undefined) {return}
         else {
@@ -164,8 +164,8 @@ $(window).on('load', function() {
     //introduction phrases 
 	$(function(){
         $(".command-typing").typed({
-            strings: ["Welcome ^200 to my personal website.", "I like to ^100 animate stuff ^200 on the web.", "If you like cat, ", 
-            " Hover over the shaking 'W' ... ^500 or", "hover over its head to make it go:("],
+            strings: ["Welcome ^200 to my personal website.", " I like to ^100 animate stuff ^200 on the web.", 
+            " Hover over the shaking 'W' ... ^500"],
             typeSpeed: 35,
             loop: true,
             startDelay: 1200,
@@ -208,14 +208,19 @@ $(window).on('load', function() {
         if ($(this).hasClass('rotate-selected')) {
 
             $(this).removeClass('rotate-selected');
-            bracket.removeClass('bracket-selected');
             bracketp.css("opacity", 0);
+            bracket.velocity("reverse");
+
 
         } else {
 
             $(this).addClass('rotate-selected');
-            bracket.addClass('bracket-selected');
             bracketp.css("opacity", 1);
+            bracket.velocity({
+                height: 0,
+            }, {
+                duration: 350,
+            });
         }
     });
     // Swapping header black to white

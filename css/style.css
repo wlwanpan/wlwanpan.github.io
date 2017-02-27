@@ -19,9 +19,9 @@
 	100% { transform: scale3d(1, 1, 1); }
 }
 @-webkit-keyframes icon-pulse{
-	0% { transform: scale3d(0.8, 0.8, 1); }
-	50% { transform: scale3d(1.2, 1.2, 1); }
-	100% { transform: scale3d(1, 1, 1); }
+	0% { transform: scale3d(0.8, 0.8, 0); }
+	50% { transform: scale3d(1.2, 1.2, 0); }
+	100% { transform: scale3d(1, 1, 0); }
 }
 @-moz-keyframes icon-pulse{
 	0% { transform: scale3d(0.8, 0.8, 1); }
@@ -29,14 +29,13 @@
 	100% { transform: scale3d(1, 1, 1); }
 }
 
-@-webkit-keyframes dash {
-	0% {
-		stroke-dashoffset: 400;
-	}
-	100% {
-		stroke-dashoffset: 0;
-	}
+@-webkit-keyframes icon-footer {
+
+	0% { transform: translate3d(5px, 0, 0); }
+	50% { transform: translate3d(-5px, 0, 0); }
+	100% { transform: translate3d(5px, 0, 0); }
 }
+
 @-webkit-keyframes headtilt {
 	0% { transform: rotate(10deg) }
 	50% { transform: rotate(-10deg) }
@@ -89,7 +88,7 @@ path {
     transform:translateY(-50%);
 }
 .typed-cursor{
-	color: #00BB00;
+	color: #1EFF00;
     -webkit-animation: blink 1s infinite;
     -moz-animation: blink 1s infinite;
     animation: blink 1s infinite;
@@ -221,13 +220,13 @@ path {
 
 	bottom: 0%;
 	background: #ffffff;
-	z-index: 999;
 	display: block;
 	width: 100%;
 	height: 50px;
 
 }
 #footer-content {
+
 	width: 90%;
 	margin: 0 auto;
 	text-align: center;
@@ -241,15 +240,20 @@ path {
 	color: #000000;
 }
 #footer-icon-container {
-	display: inline-block;
+
 	float: right;
 }
-#footer-content a {
+.footer-icon {
 
+	display: inline-block;
+	float: right;
 	margin-right: 10px;
-    color: #000000;
-    -webkit-transition: color 800ms;
-	transition: color 800ms;
+    -webkit-transition: all 800ms;
+	transition: all 800ms;
+
+}
+.footer-icon a {
+	color: #000000;
 }
 .fa-steam:hover {
 	color: #536772;
@@ -268,7 +272,7 @@ path {
 
 	margin-top: 50px;
 	width: 100%;
-	overflow-x: hidden;
+	overflow: hidden;
 	z-index: 100;
 
 }
@@ -401,12 +405,15 @@ path {
 	margin-left: 20px;
 
 }
-.bracket-selected {
-	max-height: 0px;
+.closing-bracket-p { 
+
+	-webkit-transition: opacity 175ms 175ms;
+    transition: opacity 175ms 175ms;
+	opacity: 0;
+
 }
 .bracket-closing {
-	-webkit-transition: max-height 200ms;
-    transition: max-height 200ms;
+
     max-height: auto;
 	overflow: hidden;
 	margin-left: 15px;
