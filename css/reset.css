@@ -111,6 +111,62 @@ input, select {
     color: #191919; 
     background: #FFFFFF;
 }
+/*-- Tools animation --*/ 
+
+#ajax-1 {
+    transform-origin: 188px 50%;
+    -webkit-transform-origin: 190px 50%;
+
+    animation: ajax-animation 7s ease-in 0s infinite;
+    -webkit-animation: ajax-animation 7s ease-in 0s infinite;
+
+}
+#ajax-2 {
+    transform-origin: 188px 50%;
+    -webkit-transform-origin: 190px 50%;
+
+    animation: ajax-animation 7s ease-in 500ms infinite;
+    -webkit-animation: ajax-animation 7s ease-in 500ms infinite;
+}
+
+#jquery-1 {
+    animation: jquery-animation 3s ease-in 1s infinite;
+    -webkit-animation: jquery-animation 3s ease-in 1000ms infinite;
+}
+#jquery-2 {
+    animation: jquery-animation 3s ease-in 1s infinite;
+    -webkit-animation: jquery-animation 3s ease-in 500ms infinite;
+}
+#jquery-3 {
+    animation: jquery-animation 3s ease-in 1s infinite;
+    -webkit-animation: jquery-animation 3s ease-in 0ms infinite;
+}
+
+#snapsvg-1 {
+
+    animation: snapsvg-animation-down 5s ease-in 0ms infinite;
+    -webkit-animation: snapsvg-animation-down 5s ease-in 0ms infinite;
+}
+#snapsvg-5 {
+
+    animation: snapsvg-animation-up 2s ease-in 0ms infinite;
+    -webkit-animation: snapsvg-animation-up 5s ease-in 0ms infinite;
+}
+#snapsvg-4 {
+
+    animation: snapsvg-animation-left 5s ease-in 0ms infinite;
+    -webkit-animation: snapsvg-animation-left 5s ease-in 0ms infinite;
+}
+#snapsvg-2 {
+
+    animation: snapsvg-animation-left 5s ease-in 0ms infinite;
+    -webkit-animation: snapsvg-animation-left 5s ease-in 0ms infinite;
+}
+#snapsvg-3 {
+
+    animation: snapsvg-animation-right 5s ease-in 0ms infinite;
+    -webkit-animation: snapsvg-animation-right 5s ease-in 0ms infinite;
+}
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (max-width : 480px) {
     #intro-name {
