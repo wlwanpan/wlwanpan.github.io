@@ -27,23 +27,25 @@
 
 	<div id="cat-placeholder"></div>
 	<div id="logo-container">
+
 		<!-- viewBox preserveAspectRatio (align=>Point of Referencez, ) -->
 		<svg id="logo-svg-box" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77.7 77" preserveAspectRatio="xMidYMax meet">
 
 			<!-- CAT -->
 			<g id="fetus" class="morphable logo-animate" stroke-linejoin="round" stroke-linecap="round" stroke-linecap="round">
+
 				<g id="tail" class="tail-animate">
-					<path id="c2" d="M33 47.6h11.5l-5.7 8.2z"/>
+					<path id="c2" d=""/>
 				</g>
 				<g id="body">
-					<path id="c1" d="M33 47.6h11.5l-5.7 8.2z"/>
-					<path id="c3" d="M33 47.6h11.5l-5.7 8.2z"/>
-					<path id="c4" d="M33 47.6h11.5l-5.7 8.2z"/>
+					<path id="c1" d=""/>
+					<path id="c3" d=""/>
+					<path id="c4" d=""/>
 				</g>
 				<g id="head" class="head-animate">
-					<path id="c5" d="M33 47.6h11.5l-5.7 8.2z"/>
-					<path id="c6" d="M33 47.6h11.5l-5.7 8.2z"/>
-					<path id="c7" d="M33 47.6h11.5l-5.7 8.2z"/>
+					<path id="c5" d=""/>
+					<path id="c6" d=""/>
+					<path id="c7" d=""/>
 				</g>
 			</g>
 
@@ -67,7 +69,18 @@
 				<path d="M1 40.4l18.8-25L.5.3z"/>
 				<path d="M19 76.5l-18-36 11.5-15.2z"/>
 			</g>
-			
+			<g id="chicken" visibility="hidden">
+				<path id="left-leg" d="M44.3 51l-8 2.7L41 75z"/>
+				<path id="lower-body" d="M45.5 65L10.8 41l39-16.5z"/>
+				
+				<path id="tail" d="M28.2 33.7L.7 23.7l10 17.5z"/> 
+				<path id="right-leg" d="M44.3 51l-8 2.7L41 75z"/>
+
+				<path id="upper-body" d="M46 65l17.4-24L50 24.7z"/>
+				<path id="neck" d="M50.4 24.3l20.4-17-7.3 33.5z"/>
+				<path id="head" d="M71 7.3L77 18 69 16.6z"/>
+
+			</g>
 		</svg>
 
 	</div>
@@ -141,8 +154,7 @@
 					<p>- Feel free to click on <a href="https://www.dropbox.com/s/ewtcsxyk0pizts8/Resume.pdf?dl=0" target="_blank"><i class="fa fa-file-text-o fa-1x" aria-hidden="true"></i></a> to download the .pdf version of my resume for more details.</p>
 					<div id="skill-bracket-toggle">
 						<a><i id="bracket-toggle-button" class="fa fa-toggle-off fa-1x" aria-hidden="true"></i></a>
-						<!--<a><i class="fa fa-toggle-off fa-1x" aria-hidden="true"></i></a>-->
-					</div>
+					</div> 
 					<!-- General -->
 					<div class="bracket-wrapper">
 						<div class="bracket-arrow">
@@ -234,59 +246,102 @@
 
 	</section>
 
-	<section>
+	<section id="section-project" class="section-wrapper white">
+	<!--	<h1 style="float: right; right: 5%;">Project</h1> -->
+		<div id="project-intro">
 
-		<div id="section-project" class="section-wrapper white">
-			<h1> PROJECTS</h1></br>
+			<div id="project-anchor">
+			<h3> My Porfolio </h3> 
 
-			<p> Coming up soon ... </p>
-			<div id="skill-playground">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="device-svg" viewBox="0 0 169.99 96.22">
 
+				<defs>
+					<clipPath id="nexus-clip">
+						<rect id="nexus-clipper" x="134.78" y="30.66" width="33" height="57.5"/>
+		    		</clipPath>
+		    		<clipPath id="desktop-clip">
+						<rect id="desktop-clipper" x="2.6" y="2.98" width="126.13" height="73"/>
+		    		</clipPath>
+				</defs>
+
+		  		<g id="device" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+
+		    	<g id="monitor">
+
+		    	<path id="desktop" fill="#101010" d="M.5 79.67c.57 1.67 1.48 3 3.2 3.5l58.9-.05c0 2.86-.53 7.5-1.8 9.8l-16.94-.05c-.97.4-1.8 1.1-2.32 2.3l.1.5 52 .05v-.58c-.48-1.7-1.46-1.93-2.36-2.37l-16.98.1c-2.1-3.66-1.78-7.43-1.98-9.75h56.03c1.47-.42 2.62-1.34 3.07-3.4l.05-75.87c-.12-1.77-1.1-2.77-2.65-3.26L3.3.5C1.5 1.04.67 2.2.6 3.8z"/>
+
+		    	<image id="desktop-scr" x="2.6" y="2.98" width="126.13" height="145" xlink:href="image/sprite/desktop-scr.png"/>
+		    	<path id="desktop-screen" fill="none" d="M2.6 2.98l126.13-.1-.03 73.18H2.6z"/>
+
+		    	</g>
+
+		    	<g id="phone">
+		    			
+		    	<path id="nexus" fill="#101010" d="M133.5 93.17c2.32 2.5 3.8 2.25 5.43 2.55l24.95-.06c3.4-.22 4.22-1.33 5.4-2.3l-.12-55h.33l-.07-4.57h-.33v-6.7c-.95-1.33-1.92-1.5-2.88-1.7l-29.7-.05c-1.08.23-2.2.24-3.02 1.84z"/>
+
+		    	<image id="nexus-scr" x="134.78" y="30.66" width="33.1" height="132.7" xlink:href="image/sprite/nexus-scr.png"/>
+		    	<path id="nexus-screen" fill="none" d="M134.78 30.66l33.1.02.04 57.74-33.1-.1z"/>
+
+
+		    	</g>
+		 		</g>
+		 		<g stroke-linejoin="round" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff">
+
+					<circle id="desktop-button-1" cx="7.5" cy="79.72" r="1" stroke-width="4.97"/>
+
+					<circle id="desktop-button-2" cx="11.46" cy="79.72" r="1" stroke-width="4.97"/>
+
+					<circle id="nexus-button" cx="136.5" cy="28.22" r=".5" stroke-width="2.48"/>
+					
+					<rect id="desktop-stand" width="1.67" height="8.9" x="66.71" y="83.65" stroke="#ffffff" fill="#191919" stroke-width="0.3" ry=".99"/>
+
+					<rect id="nexus-menu" width="8.84" height=".83" x="146.86" y="91.71" ry=".41"/>
+
+		  		</g>
+
+			</svg>
 			</div>
+
+		</div>
+
+		<div id="project-content"></div>
+
+	</section>
+
+	<section id="footer"> 
+
+		<div id="footer-content">
+			<p> © 2017 -</p><p style="font-weight: bold;">&nbspWarren Wan </p>
+
+				<div class="footer-icon-wrapper vertical-align">
+					<a href='http://steamcommunity.com/id/bebounok/' target="_blank">
+						<i class="fa fa-steam fa-1x footer-icon anti-blur" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<div class="footer-icon-wrapper vertical-align">
+					<a href='https://www.facebook.com/wan.warren.9' target="_blank">
+						<i class="fa fa-facebook fa-1x footer-icon anti-blur" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<div class="footer-icon-wrapper vertical-align">
+					<a href="https://www.linkedin.com/in/wlwanpan" target="_blank">
+						<i class="fa fa-linkedin fa-1x footer-icon anti-blur" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<div class="footer-icon-wrapper vertical-align">
+					<a href="#mailto:wlwanpan@uwaterloo.ca" target="_blank">
+						<i class="fa fa-envelope fa-1x footer-icon anti-blur" aria-hidden="true"></i>
+					</a>
+				</div>
+
 
 		</div>
 
 	</section>
 
-
 </body>
-
-	<footer> 
-		<div id="footer">
-
-			<div id="footer-content">
-				<p> © 2017 -</p><p style="font-weight: bold;">&nbspWarren Wan </p>
-
-				<div id="footer-icon-container" class="vertical-align"> 
-
-					<div class="footer-icon">
-						<a href='http://steamcommunity.com/id/bebounok/' target="_blank">
-							<i class="fa fa-steam fa-1x" aria-hidden="true"></i>
-						</a>
-					</div>
-
-					<div class="footer-icon">
-						<a href='https://www.facebook.com/wan.warren.9' target="_blank">
-							<i class="fa fa-facebook fa-1x" aria-hidden="true"></i>
-						</a>
-					</div>
-
-					<div class="footer-icon">
-						<a href="https://www.linkedin.com/in/wlwanpan" target="_blank">
-							<i class="fa fa-linkedin fa-1x" aria-hidden="true"></i>
-						</a>
-					</div>
-
-					<div class="footer-icon">
-						<a href="#mailto:wlwanpan@uwaterloo.ca" target="_blank">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</a>
-					</div>
-
-				</div>
-			</div>
-
-		</div>
-	</footer>
 
 </html>

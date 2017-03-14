@@ -1,3 +1,17 @@
+window.requestAnimationFrame = 
+    window.requestAnimationFrame || 
+    window.webkitRequestAnimationFrame || 
+    window.mozRequestAnimationFrame || 
+    window.oRequestAnimationFrame || 
+    window.msRequestAnimationFrame;
+
+window.cancelAnimationFrame = 
+    window.cancelAnimationFrame ||
+    window.webkitCancelRequestAnimationFrame ||
+    window.mozCancelRequestAnimationFrame ||
+    window.oCancelRequestAnimationFrame ||
+    window.msCancelRequestAnimationFrame;
+
 
 var TriangleMorphing = function() {
 
@@ -20,9 +34,12 @@ var TriangleMorphing = function() {
                         'snapPath' : Snap("#cat").selectAll('path')},
                 'fix' :{'position' : ['50px', '50px'],
                         'holder' : $("#logo-fix-placeholder"),
-                        'snapPath' : Snap("#cat").selectAll('path')}
+                        'snapPath' : Snap("#cat").selectAll('path')},
+                'chicken' : {'position' : [ '10%', '18%'], 
+                            'holder' : $("#cat-placeholder"), 
+                            'snapPath' : Snap("#chicken").selectAll('path')}
                 },
-        catPart : {'body' : $("#c1"), 'head' : $('#head'), 'tail' : $('#tail')},
+        catPart : {'body' : $("#c1"), 'head' : $('#head'), 'tail' : $('#tail'), 'rleg': $('#c4')},
 
     }
     self.init = function () {
@@ -33,6 +50,7 @@ var TriangleMorphing = function() {
 
         self.scatterDuration = 700;
         self.fixationDuration = 400;
+
         // Only application when morphable and current state is cat.
         $('.head-animate').hover(function(e) {
             e.stopPropagation();
@@ -46,7 +64,13 @@ var TriangleMorphing = function() {
             if (self.morphState == 'logo' && self.morphAble) {self.transition('cat')} 
             else {}
         });
-
+        //$('.tail-animate').hover(function(e) {
+        //    e.stopPropagation();
+        //    if(self.morphAble && self.morphState != 'fix') {
+        //        self.transition('chicken');
+        //    }
+          
+        //});
     }
 
     self.transmutate = function (toState) {
@@ -54,7 +78,7 @@ var TriangleMorphing = function() {
         for (var i = 0; i < 7; i++) {
 
             var angle = (Math.random() * (self.scatterBuffer + self.scatterBuffer) - self.scatterBuffer);
-            var finalMatrix = "t 0 0 , r" + angle + "0% 0%" ;
+            var finalMatrix = "t 0 0 , r" + angle + "50% 50%" ;
     
             self.fetusPath[i].animate({transform: finalMatrix}, self.scatterDuration, mina.easeIn);
 
@@ -79,12 +103,24 @@ var TriangleMorphing = function() {
             self.logoContainer.css('bottom', '-1px').css('top', 'auto').css('left', '5%').css('z-index', 'inherit');
             self.catPart['head'].addClass('head-animate');
             self.catPart['tail'].addClass('tail-animate');
+            self.catPart['body'].css('fill', '#191919').css('stroke', '#191919');
+
+        } else if (toState == 'chicken'){
+            
+            self.logoContainer.css('bottom', '-1px').css('top', 'auto').css('left', '5%').css('z-index', 'inherit');
+            self.catPart['body'].css('fill', '#191919').css('stroke', '#191919');
+            self.catPart['head'].removeClass('head-animate');
+            self.catPart['tail'].removeClass('tail-animate');
+
+            //self.GameOn();
 
         } else {
 
-            self.data[toState]['holder'].append(self.logoContainer);
             self.catPart['head'].removeClass('head-animate');
             self.catPart['tail'].removeClass('tail-animate');
+
+            self.catPart['body'].css('fill', '').css('stroke', '');
+            self.data[toState]['holder'].append(self.logoContainer);
 
             if (toState == 'fix'){
                 // logo fix Adjustments
@@ -94,7 +130,8 @@ var TriangleMorphing = function() {
                 // logo Adjustments
                 self.logoContainer.css('position', 'absolute').css('top', '0%').css('left', 'inherit');
                 self.fetus.addClass('logo-animate');
-            }
+
+            } 
 
         } 
 
@@ -102,7 +139,10 @@ var TriangleMorphing = function() {
     }
     self.transition = function (toState) {
 
-        var selectedLib = self.data[toState];
+        if (toState == 'chicken') { 
+            var selectedLib = self.data['cat'];
+        }
+        else {var selectedLib = self.data[toState];}
 
         if (toState == 'logo') {
 
@@ -119,8 +159,8 @@ var TriangleMorphing = function() {
                 self.logoContainer.css('z-index', '999');
             } else {}
         } 
-        if (selectedLib == undefined) {return}
-        else {
+
+        if (self.morphAble && selectedLib != undefined){
 
             self.morphAble = false;
             self.clickable = false;
@@ -142,26 +182,116 @@ var TriangleMorphing = function() {
                     self.transitionSet(toState);
                 }
             });
+        } else {}
+    }
+    self.init();
+    return self;
+}
+var Project = function () {
+    
+    var self = {
+
+        container: $('#project-content'),
+        logoTransformDuration: 2000,
+        nexusScrollDuration: 9000,
+        desktopScrollDuration: 11000,
+
+    }
+    self.init = function () {
+
+        $.ajax({
+            url: 'includes/project.html',
+            cache: false,
+            dataType: "html",
+            success: function(data) {
+
+                self.container.html(data);
+                self.deviceAnimation($('#nexus-scr'), $('#desktop-scr'));
+                self.webTechAnimation();
+
+            }
+        }); 
+    }
+    self.webTechAnimation = function () {
+        
+        var frameSnap = Snap('#logo-frame').selectAll('path');
+        var counter = 1;
+        // Swith order => 5 => 3 => S
+        var LogoPath = ["M13.03 14.72h43.9l-.8 8.83H22.6l.8 9.04h31.94l-2.4 27.1-17.94 5-18-5-1.18-13.84 8.76-.02.62 7.04 9.76 2.66 9.78-2.66.84-11.47-10.75.06-19.34-.05-1.38-14.96z", "M11.04 14.2l47.1.05-.85 9.1-19.32 8.77 18.66.03-2.27 27.38-19.4 5.2-19.35-4.97-1.33-13.6 8.7.12.6 7.1 11.45 2.23 10.52-3.3.72-11.46-32.6.1-.75-8.97 21.32-9.4-22.35-.23z", "M17.9 14.67h35.42l1.95 14.1h-8.93l-.32-5.17H25.1l-.42 9h30.7l-2.44 27.1L35 64.76 17 59.7l-1.18-13.84h8.85l.53 7.02 9.76 2.66 9.78-2.66.84-11.47h-30.1z"];
+        var FrameOutsideColor = ["#e44d26", "#0170ba", "#e6a329"];
+        var FrameInsideColor = ["#f16529", "#29a9df", "#f1bf22"];
+
+        function changeLogo() {
+
+            if (counter > 2) {counter = 0}
+
+            frameSnap[2].animate({d: LogoPath[counter]}, self.logoTransformDuration, mina.easeOut, function () {
+                
+                frameSnap[0].attr("fill", FrameInsideColor[counter]);
+                frameSnap[1].attr("fill", FrameOutsideColor[counter]);
+                counter++;
+
+                setTimeout (function () {
+                    
+                    changeLogo();
+
+                }, self.logoTransformDuration);
+
+            });
         }
+
+        changeLogo();
+    }
+    self.deviceAnimation = function (mobile, desktop) {
+
+        mobile.velocity({
+            tween: [-45, 30],
+        }, {
+            loop: true,
+            duration: self.nexusScrollDuration,
+            easing: "easeInOut",
+            progress: function (elements, complete, remaining, start, tweenValue) {
+
+                $(this).attr('y', tweenValue);
+
+            }
+        });
+
+        desktop.velocity({
+            tween: [-1, -45],
+        }, {
+            loop: true,
+            duration: self.desktopScrollDuration,
+            progress: function (elements, complete, remaining, start, tweenValue) {
+                
+                $(this).attr('y', tweenValue);
+
+            }
+        });
     }
     self.init();
     return self;
 }
 $(window).on('load', function() {
-
+    //Global
     var HeaderHeight = 50;
-    var IntroContainer = $('#intro-container');
-    var IconContainer = $("#icon-container");
-    var Header = $("#header");
-    var AboutmeH1 = $("#aboutme-container h1");
-    var ProjectH1 = $("#section-project h1");
+    var IntroContainer = $('#intro-container'), IconContainer = $("#icon-container"), Header = $("#header");
+    var AboutmeH1 = $("#aboutme-container h1"), ProjectH1 = $("#section-project h1");
+    var PortIntro = $('#project-intro'), ProjectToggle = $('#bracket-toggle-button');
+    var Toggle = false;
+    var OneTimeEvent = true;
 
     var TriObj = TriangleMorphing();
     var fetus = $("#fetus");
+    var ProjectObj = Project();
 
 	IntroContainer.css('height', window.innerHeight-HeaderHeight);
+    PortIntro.css('height', window.innerHeight*1.3);
+    $('project-svg-container').css('height', window.innerHeight-HeaderHeight);
 
-    //introduction phrases 
+    $('.non-draggable').on('dragstart', function(event) { event.preventDefault(); });
+
+    // Section Intro (introduction phrases )
 	$(function(){
         $(".command-typing").typed({
             strings: ["Welcome ^200 to my personal website.", " I like to ^100 animate stuff ^200 on the web.", 
@@ -176,13 +306,13 @@ $(window).on('load', function() {
         });
     });
     var rotateClass = $('.rotate');
+    // Section About me
     // Toggle to Minimize or Maximize All Resume Brackets
-    $('#bracket-toggle-button').on('click', function(){
+    ProjectToggle.on('click', function(){
         // toggle off => display
         if ($(this).hasClass('fa-toggle-on')) {
 
-            $(this).removeClass('fa-toggle-on');
-            $(this).addClass('fa-toggle-off');
+            $(this).removeClass('fa-toggle-on').addClass('fa-toggle-off');
 
             rotateClass.each(function() {
                 if ($(this).hasClass('rotate-selected')) {$(this).trigger('click');}
@@ -190,8 +320,7 @@ $(window).on('load', function() {
 
         } else {
 
-            $(this).removeClass('fa-toggle-off');
-            $(this).addClass('fa-toggle-on');
+            $(this).removeClass('fa-toggle-off').addClass('fa-toggle-on');
 
             rotateClass.each(function() {
                 if (!$(this).hasClass('rotate-selected')) {$(this).trigger('click');}
@@ -199,6 +328,7 @@ $(window).on('load', function() {
 
         }
     });
+    // Section About me
     // Minimize or Maximize Resume Brackets
     rotateClass.on('click', function(){
         //$(this).removeClass('selected');
@@ -211,7 +341,6 @@ $(window).on('load', function() {
             bracketp.css("opacity", 0);
             bracket.velocity("reverse");
 
-
         } else {
 
             $(this).addClass('rotate-selected');
@@ -219,13 +348,14 @@ $(window).on('load', function() {
             bracket.velocity({
                 height: 0,
             }, {
-                duration: 350,
+                easing: "easeInOut",
+                duration: 500,
             });
         }
     });
     // Swapping header black to white
     var ScrollPosn = 0;
-
+    // Scroll function
     $(document).scroll(function() { 
 
         var ScrollPosn = $(this).scrollTop();
@@ -233,9 +363,10 @@ $(window).on('load', function() {
         var SectionProject = $("#section-project").offset().top - HeaderHeight;
         var buffer = window.innerHeight/2;
         // section about me
-        if (ScrollPosn == 0 && TriObj.morphAble && TriObj.morphState == "fix") {
+        if (ScrollPosn == 0) {
 
-            TriObj.transition('logo');
+            if (TriObj.morphAble && TriObj.morphState == "fix") {TriObj.transition('logo');}
+
 
         } else if (ScrollPosn > SectionAboutme-buffer) { 
 
@@ -248,11 +379,20 @@ $(window).on('load', function() {
         }
 
         if (ScrollPosn > SectionProject-buffer) {ProjectH1.css('opacity', 1);}
+        
         else {ProjectH1.css('opacity', 0);}
 
-        if (ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject) {
+        // Page on Section About me
+        if (ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject-1) {
 
             if (TriObj.morphState == "fix") {fetus.css('fill', '#ffffff').css('stroke', '#ffffff');}
+
+            if (OneTimeEvent) {
+                
+                //ProjectToggle.trigger('click').trigger('click');
+                OneTimeEvent = false;
+
+            }
 
             TriObj.morphAble = false; // Prevent Morphing Propagation
             IconContainer.find('a').css('color', 'white');
@@ -270,6 +410,7 @@ $(window).on('load', function() {
 
         }
     });
+    // Section About me
     // Coloring Resume-section
     var white = {color: "#ffffff", words: [';',':', ',', 'and', '{', '}', '.', '(', ')', '..']};
     var green = {color: "#A6E22E", words: ['Skill', 'Education', 'Experience', 'Certification', 'Awards']};
@@ -337,12 +478,12 @@ $(window).on('load', function() {
         } else {}//clickpropagation 
     });
     $('html').show();
-
     // Check resizing event => adjust window height
     $(this).resize(function() {
 
         var HeaderHeight = 50;
         IntroContainer.css('height', window.innerHeight-HeaderHeight);
+        //PortIntro.css('height', window.innerHeight*1.3);
 
     });
 });

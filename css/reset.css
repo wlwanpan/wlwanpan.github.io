@@ -101,9 +101,18 @@ hr {
 input, select {
     vertical-align:middle;
 }
+/* Selection */
+::-moz-selection { 
+    color: #191919;
+    background: #FFFFFF;
+}
 
+::selection {
+    color: #191919; 
+    background: #FFFFFF;
+}
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen and (min-width : 320px) and (max-width : 480px) {
+@media only screen and (max-width : 480px) {
     #intro-name {
         top: 20%;
     }
@@ -117,6 +126,8 @@ input, select {
     #intro-container h2 {
         /*font-size: 3em;*/
     }
+
+
 }
 @media only screen and (max-width : 768px) {
     #aboutme-container {
@@ -135,8 +146,23 @@ input, select {
         margin-top: 50px;
 
     }
-}
+    #port-content {
+
+        width: 100%;
+
+    }   
+    #device-svg {
+
+        left: 5%;
+        width: 90%;
+
+    }
+
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) and (max-width : 1024px) {
 
-}
+    #port-content {
+
+        width: 100%;
+
+    }   
