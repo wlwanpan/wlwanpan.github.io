@@ -126,9 +126,11 @@ input, select {
     #intro-container h2 {
         /*font-size: 3em;*/
     }
+    #project-intro {
+        height: 0px;
+    }
 
 
-}
 @media only screen and (max-width : 768px) {
     #aboutme-container {
     
@@ -150,7 +152,11 @@ input, select {
 
         width: 100%;
 
-    }   
+    }
+    #port-content p {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
     #device-svg {
 
         left: 5%;
@@ -161,8 +167,4 @@ input, select {
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) and (max-width : 1024px) {
 
-    #port-content {
 
-        width: 100%;
-
-    }   

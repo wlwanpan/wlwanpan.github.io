@@ -483,7 +483,6 @@ $(window).on('load', function() {
 
         var HeaderHeight = 50;
         IntroContainer.css('height', window.innerHeight-HeaderHeight);
-        //PortIntro.css('height', window.innerHeight*1.3);
 
     });
 });
