@@ -144,15 +144,15 @@
 /* project section jquery logo */
 @keyframes jquery-animation{
 	0%, 80% { fill: #0868ac; }
-	100% { fill: #FFFFFF; }
+	100% { fill: #191919; }
 }
 @-webkit-keyframes jquery-animation{
 	0%, 80% { fill: #0868ac; }
-	100% { fill: #FFFFFF; }
+	100% { fill: #191919; }
 }
 @-moz-keyframes jquery-animation{
 	0%, 80% { fill: #0868ac; }
-	100% { fill: #FFFFFF; }
+	100% { fill: #191919; }
 }
 /* ----- GLOBAL -----*/
 html {
