@@ -153,10 +153,18 @@ input, select {
         width: 100%;
 
     }
-    #port-content p {
+    #port-content p{
+
         padding-left: 5%;
         padding-right: 5%;
+
     }
+    .logo-svg{
+
+        padding-left: 5%;
+
+    }
+
     #device-svg {
 
         left: 5%;

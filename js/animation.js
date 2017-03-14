@@ -200,7 +200,7 @@ var Project = function () {
     self.init = function () {
 
         $.ajax({
-            url: 'includes/project.html',
+            url: 'includes/portfolio.html',
             cache: false,
             dataType: "html",
             success: function(data) {
