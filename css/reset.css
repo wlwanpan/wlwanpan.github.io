@@ -181,12 +181,16 @@ input, select {
     }
     #intro-container h2 {
         /*font-size: 3em;*/
-    }
+    }    
     #project-intro {
-        height: 0px;
+       max-height: 400px;
     }
+    #project-anchor {
 
-
+        background-image: none;
+        background-image: none;
+    }
+}
 @media only screen and (max-width : 768px) {
     #aboutme-container {
     
@@ -220,7 +224,6 @@ input, select {
         padding-left: 5%;
 
     }
-
     #device-svg {
 
         left: 5%;
@@ -231,4 +234,7 @@ input, select {
 /* Tablets (portrait and landscape) ----------- */
 @media only screen and (min-width : 768px) and (max-width : 1024px) {
 
-
+    #project-intro {
+       max-height: 400px;
+    }
+}

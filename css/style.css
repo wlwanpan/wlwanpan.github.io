@@ -178,7 +178,6 @@
 	0%, 80% { transform: translate3d(0px, 0px, 0px); }
 	100% { transform: translate3d(-10px, 0px, 0px); }
 }
-
 @-moz-keyframes snapsvg-animation-left{
 	0%, 80% { transform: translate3d(0px, 0px, 0px); }
 	100% { transform: translate3d(-10px, 0px, 0px); }
@@ -597,6 +596,7 @@ path {
 	display: block;
 }
 /* ----- SECTION PROJECT -----*/
+
 #project-intro h3{
 
 	font-family: 'Merriweather Sans', sans-serif;
