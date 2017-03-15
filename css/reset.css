@@ -185,11 +185,6 @@ input, select {
     #project-intro {
        max-height: 400px;
     }
-    #project-anchor {
-
-        background-image: none;
-        background-image: none;
-    }
 }
 @media only screen and (max-width : 768px) {
     #aboutme-container {

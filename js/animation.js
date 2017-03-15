@@ -26,6 +26,7 @@ var TriangleMorphing = function() {
         morphState : 'logo',
         morphAble : true,
         clickable : true,
+        ScrollAble: false,
         data : {'logo':{'position' : [ '70px', '70px'], 
                         'holder' : $("#logo-placeholder"), 
                         'snapPath' : Snap("#logo").selectAll('path') }, 
@@ -64,13 +65,7 @@ var TriangleMorphing = function() {
             if (self.morphState == 'logo' && self.morphAble) {self.transition('cat')} 
             else {}
         });
-        //$('.tail-animate').hover(function(e) {
-        //    e.stopPropagation();
-        //    if(self.morphAble && self.morphState != 'fix') {
-        //        self.transition('chicken');
-        //    }
-          
-        //});
+
     }
 
     self.transmutate = function (toState) {
@@ -104,6 +99,7 @@ var TriangleMorphing = function() {
             self.catPart['head'].addClass('head-animate');
             self.catPart['tail'].addClass('tail-animate');
             self.catPart['body'].css('fill', '#191919').css('stroke', '#191919');
+            ScrollAble = false;
 
         } else if (toState == 'chicken'){
             
@@ -125,16 +121,17 @@ var TriangleMorphing = function() {
             if (toState == 'fix'){
                 // logo fix Adjustments
                 self.logoContainer.css('position', 'inherit').css('top', '0%').css('left', 'inherit');    
+                ScrollAble = true;
 
             } else if (toState == 'logo') {
                 // logo Adjustments
                 self.logoContainer.css('position', 'absolute').css('top', '0%').css('left', 'inherit');
                 self.fetus.addClass('logo-animate');
+                ScrollAble = false;
 
             } 
 
         } 
-
         self.morphAble = true;
     }
     self.transition = function (toState) {
@@ -358,9 +355,13 @@ $(window).on('load', function() {
     // Scroll function
     $(document).scroll(function() { 
 
+        //$(window).disablescroll();
+
         var ScrollPosn = $(this).scrollTop();
         var SectionAboutme = $("#section-aboutme").offset().top - HeaderHeight;
         var SectionProject = $("#section-project").offset().top - HeaderHeight;
+        var ProjectIntro = $("#project-intro");
+        var SectionProjectIntro = ProjectIntro.offset().top + ProjectIntro.height()*0.7 - HeaderHeight;
         var buffer = window.innerHeight/2;
         // section about me
         if (ScrollPosn == 0) {
@@ -383,7 +384,7 @@ $(window).on('load', function() {
         else {ProjectH1.css('opacity', 0);}
 
         // Page on Section About me
-        if (ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject-1) {
+        if ((ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject-1) || ScrollPosn > SectionProjectIntro) {
 
             if (TriObj.morphState == "fix") {fetus.css('fill', '#ffffff').css('stroke', '#ffffff');}
 
