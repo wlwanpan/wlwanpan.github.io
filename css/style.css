@@ -144,14 +144,39 @@
 /* project section snapsvg logo */
 
 
+@keyframes snapsvg-animation-down{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(0px, 10px, 0px); }
+}
+@-webkit-keyframes snapsvg-animation-down{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(0px, 10px, 0px); }
+}
 @-moz-keyframes snapsvg-animation-down{
 	0%, 80% { transform: translate3d(0px, 0px, 0px); }
 	100% { transform: translate3d(0px, 10px, 0px); }
 }
 
+@keyframes snapsvg-animation-up{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(0px, -10px, 0px); }
+}
+@-webkit-keyframes snapsvg-animation-up{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(0px, -10px, 0px); }
+}
 @-moz-keyframes snapsvg-animation-up{
 	0%, 80% { transform: translate3d(0px, 0px, 0px); }
 	100% { transform: translate3d(0px, -10px, 0px); }
+}
+
+@keyframes snapsvg-animation-left{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(-10px, 0px, 0px); }
+}
+@-webkit-keyframes snapsvg-animation-left{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(-10px, 0px, 0px); }
 }
 
 @-moz-keyframes snapsvg-animation-left{
@@ -159,10 +184,20 @@
 	100% { transform: translate3d(-10px, 0px, 0px); }
 }
 
+
+@keyframes snapsvg-animation-right{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(10px, 0px, 0px); }
+}
+@-webkit-keyframes snapsvg-animation-right{
+	0%, 80% { transform: translate3d(0px, 0px, 0px); }
+	100% { transform: translate3d(10px, 0px, 0px); }
+}
 @-moz-keyframes snapsvg-animation-right{
 	0%, 80% { transform: translate3d(0px, 0px, 0px); }
 	100% { transform: translate3d(10px, 0px, 0px); }
 }
+
 /* ----- GLOBAL -----*/
 html {
     overflow-x: hidden;
@@ -637,6 +672,5 @@ path {
 .logo-svg {
 	
 	display: block;
-
 
 }
