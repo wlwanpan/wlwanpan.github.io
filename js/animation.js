@@ -1,11 +1,11 @@
-window.requestAnimationFrame = 
-    window.requestAnimationFrame || 
-    window.webkitRequestAnimationFrame || 
-    window.mozRequestAnimationFrame || 
-    window.oRequestAnimationFrame || 
+window.requestAnimationFrame =
+    window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
     window.msRequestAnimationFrame;
 
-window.cancelAnimationFrame = 
+window.cancelAnimationFrame =
     window.cancelAnimationFrame ||
     window.webkitCancelRequestAnimationFrame ||
     window.mozCancelRequestAnimationFrame ||
@@ -16,7 +16,7 @@ window.cancelAnimationFrame =
 var TriangleMorphing = function() {
 
     var self = {
-            
+
         fetus : Snap("#fetus"),
         fetusPath : null,
         logoContainer : $("#logo-container"),
@@ -27,17 +27,17 @@ var TriangleMorphing = function() {
         morphAble : true,
         clickable : true,
         ScrollAble: false,
-        data : {'logo':{'position' : [ '70px', '70px'], 
-                        'holder' : $("#logo-placeholder"), 
-                        'snapPath' : Snap("#logo").selectAll('path') }, 
-                'cat' :{'position' : [ '10%', '18%'], 
-                        'holder' : $("#cat-placeholder"), 
+        data : {'logo':{'position' : [ '70px', '70px'],
+                        'holder' : $("#logo-placeholder"),
+                        'snapPath' : Snap("#logo").selectAll('path') },
+                'cat' :{'position' : [ '10%', '18%'],
+                        'holder' : $("#cat-placeholder"),
                         'snapPath' : Snap("#cat").selectAll('path')},
                 'fix' :{'position' : ['50px', '50px'],
                         'holder' : $("#logo-fix-placeholder"),
                         'snapPath' : Snap("#cat").selectAll('path')},
-                'chicken' : {'position' : [ '10%', '18%'], 
-                            'holder' : $("#cat-placeholder"), 
+                'chicken' : {'position' : [ '10%', '18%'],
+                            'holder' : $("#cat-placeholder"),
                             'snapPath' : Snap("#chicken").selectAll('path')}
                 },
         catPart : {'body' : $("#c1"), 'head' : $('#head'), 'tail' : $('#tail'), 'rleg': $('#c4')},
@@ -62,7 +62,7 @@ var TriangleMorphing = function() {
         // Only applicable when morphable and current state is logo.
         self.fetus.hover(function(e) {
             e.stopPropagation();
-            if (self.morphState == 'logo' && self.morphAble) {self.transition('cat')} 
+            if (self.morphState == 'logo' && self.morphAble) {self.transition('cat')}
             else {}
         });
 
@@ -74,7 +74,7 @@ var TriangleMorphing = function() {
 
             var angle = (Math.random() * (self.scatterBuffer + self.scatterBuffer) - self.scatterBuffer);
             var finalMatrix = "t 0 0 , r" + angle + "50% 50%" ;
-    
+
             self.fetusPath[i].animate({transform: finalMatrix}, self.scatterDuration, mina.easeIn);
 
         }
@@ -89,7 +89,7 @@ var TriangleMorphing = function() {
             }
 
         }, self.scatterDuration);
- 
+
     }
     self.transitionSet = function (toState) {
 
@@ -102,7 +102,7 @@ var TriangleMorphing = function() {
             ScrollAble = false;
 
         } else if (toState == 'chicken'){
-            
+
             self.logoContainer.css('bottom', '-1px').css('top', 'auto').css('left', '5%').css('z-index', 'inherit');
             self.catPart['body'].css('fill', '#191919').css('stroke', '#191919');
             self.catPart['head'].removeClass('head-animate');
@@ -120,7 +120,7 @@ var TriangleMorphing = function() {
 
             if (toState == 'fix'){
                 // logo fix Adjustments
-                self.logoContainer.css('position', 'inherit').css('top', '0%').css('left', 'inherit');    
+                self.logoContainer.css('position', 'inherit').css('top', '0%').css('left', 'inherit');
                 ScrollAble = true;
 
             } else if (toState == 'logo') {
@@ -129,14 +129,14 @@ var TriangleMorphing = function() {
                 self.fetus.addClass('logo-animate');
                 ScrollAble = false;
 
-            } 
+            }
 
-        } 
+        }
         self.morphAble = true;
     }
     self.transition = function (toState) {
 
-        if (toState == 'chicken') { 
+        if (toState == 'chicken') {
             var selectedLib = self.data['cat'];
         }
         else {var selectedLib = self.data[toState];}
@@ -152,10 +152,10 @@ var TriangleMorphing = function() {
 
             if (toState == 'cat'){
 
-            } else if (toState == 'fix'){                
+            } else if (toState == 'fix'){
                 self.logoContainer.css('z-index', '999');
             } else {}
-        } 
+        }
 
         if (self.morphAble && selectedLib != undefined){
 
@@ -163,7 +163,7 @@ var TriangleMorphing = function() {
             self.clickable = false;
             self.transmutate(toState); // Starts Morphing Function
             self.logoContainer.velocity({ // Div transition and final setup
-              
+
                 width: selectedLib['position'][0],
                 height: selectedLib['position'][1],
                 left: selectedLib['holder'].offset().left,
@@ -185,7 +185,7 @@ var TriangleMorphing = function() {
     return self;
 }
 var Project = function () {
-    
+
     var self = {
 
         container: $('#project-content'),
@@ -196,21 +196,21 @@ var Project = function () {
     }
     self.init = function () {
 
-        $.ajax({
-            url: 'includes/portfolio.html',
-            cache: false,
-            dataType: "html",
-            success: function(data) {
-
-                self.container.html(data);
-                self.deviceAnimation($('#nexus-scr'), $('#desktop-scr'));
-                self.webTechAnimation();
-
-            }
-        }); 
+        // $.ajax({
+        //     url: 'includes/portfolio.html',
+        //     cache: false,
+        //     dataType: "html",
+        //     success: function(data) {
+        //
+        //         self.container.html(data);
+        //         self.deviceAnimation($('#nexus-scr'), $('#desktop-scr'));
+        //         self.webTechAnimation();
+        //
+        //     }
+        // });
     }
     self.webTechAnimation = function () {
-        
+
         var frameSnap = Snap('#logo-frame').selectAll('path');
 
         var counter = 1;
@@ -224,13 +224,13 @@ var Project = function () {
             if (counter > 2) {counter = 0}
 
             frameSnap[2].animate({d: LogoPath[counter]}, self.logoTransformDuration, mina.easeOut, function () {
-                
+
                 frameSnap[0].attr("fill", FrameInsideColor[counter]);
                 frameSnap[1].attr("fill", FrameOutsideColor[counter]);
                 counter++;
 
                 setTimeout (function () {
-                    
+
                     changeLogo();
 
                 }, self.logoTransformDuration);
@@ -260,7 +260,7 @@ var Project = function () {
             loop: true,
             duration: self.desktopScrollDuration,
             progress: function (elements, complete, remaining, start, tweenValue) {
-                
+
                 $(this).attr('y', tweenValue);
 
             }
@@ -273,8 +273,7 @@ $(window).on('load', function() {
     //Global
     var HeaderHeight = 50;
     var IntroContainer = $('#intro-container'), IconContainer = $("#icon-container"), Header = $("#header");
-    var AboutmeH1 = $("#aboutme-container h1"), ProjectH1 = $("#section-project h1");
-    var PortIntro = $('#project-intro'), ProjectToggle = $('#bracket-toggle-button');
+    var AboutmeH1 = $("#aboutme-container h1")
     var Toggle = false;
     var OneTimeEvent = true;
 
@@ -283,16 +282,17 @@ $(window).on('load', function() {
     var ProjectObj = Project();
 
 	IntroContainer.css('height', window.innerHeight-HeaderHeight);
-    PortIntro.css('height', window.innerHeight*1.3);
-    $('project-svg-container').css('height', window.innerHeight-HeaderHeight);
 
     $('.non-draggable').on('dragstart', function(event) { event.preventDefault(); });
 
     // Section Intro (introduction phrases )
 	$(function(){
         $(".command-typing").typed({
-            strings: ["Welcome ^200 to my personal website.", " I like to ^100 animate stuff ^200 on the web.", 
-            " Hover over the shaking 'W' ... ^500"],
+            strings: [
+              "Welcome ^200 to my personal website.",
+              "If you are a cat person, ^100",
+              "Hover over the shaking 'W' ... ^500"
+            ],
             typeSpeed: 35,
             loop: true,
             startDelay: 1200,
@@ -305,26 +305,6 @@ $(window).on('load', function() {
     var rotateClass = $('.rotate');
     // Section About me
     // Toggle to Minimize or Maximize All Resume Brackets
-    ProjectToggle.on('click', function(){
-        // toggle off => display
-        if ($(this).hasClass('fa-toggle-on')) {
-
-            $(this).removeClass('fa-toggle-on').addClass('fa-toggle-off');
-
-            rotateClass.each(function() {
-                if ($(this).hasClass('rotate-selected')) {$(this).trigger('click');}
-            });
-
-        } else {
-
-            $(this).removeClass('fa-toggle-off').addClass('fa-toggle-on');
-
-            rotateClass.each(function() {
-                if (!$(this).hasClass('rotate-selected')) {$(this).trigger('click');}
-            });
-
-        }
-    });
     // Section About me
     // Minimize or Maximize Resume Brackets
     rotateClass.on('click', function(){
@@ -353,15 +333,13 @@ $(window).on('load', function() {
     // Swapping header black to white
     var ScrollPosn = 0;
     // Scroll function
-    $(document).scroll(function() { 
+    $(document).scroll(function() {
 
         //$(window).disablescroll();
 
         var ScrollPosn = $(this).scrollTop();
         var SectionAboutme = $("#section-aboutme").offset().top - HeaderHeight;
-        var SectionProject = $("#section-project").offset().top - HeaderHeight;
         var ProjectIntro = $("#project-intro");
-        var SectionProjectIntro = ProjectIntro.offset().top + ProjectIntro.height()*0.7 - HeaderHeight;
         var buffer = window.innerHeight/2;
         // section about me
         if (ScrollPosn == 0) {
@@ -369,7 +347,7 @@ $(window).on('load', function() {
             if (TriObj.morphAble && TriObj.morphState == "fix") {TriObj.transition('logo');}
 
 
-        } else if (ScrollPosn > SectionAboutme-buffer) { 
+        } else if (ScrollPosn > SectionAboutme-buffer) {
 
             AboutmeH1.css('opacity', 1);
 
@@ -379,17 +357,13 @@ $(window).on('load', function() {
 
         }
 
-        if (ScrollPosn > SectionProject-buffer) {ProjectH1.css('opacity', 1);}
-        
-        else {ProjectH1.css('opacity', 0);}
-
         // Page on Section About me
-        if ((ScrollPosn >= SectionAboutme && ScrollPosn < SectionProject-1) || ScrollPosn > SectionProjectIntro) {
+        if (ScrollPosn >= SectionAboutme) {
 
             if (TriObj.morphState == "fix") {fetus.css('fill', '#ffffff').css('stroke', '#ffffff');}
 
             if (OneTimeEvent) {
-                
+
                 //ProjectToggle.trigger('click').trigger('click');
                 OneTimeEvent = false;
 
@@ -415,8 +389,8 @@ $(window).on('load', function() {
     // Coloring Resume-section
     var white = {color: "#ffffff", words: [';',':', ',', 'and', '{', '}', '.', '(', ')', '..']};
     var green = {color: "#A6E22E", words: ['Skill', 'Education', 'Experience', 'Certification', 'Awards']};
-    var red = {color: "#F9264C", words: ['Email', 'Python', 'Front-end', 'Computer', 'Science', '*']};
-    var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'Aug', 'Dec', '2012', '2014', '2016']};
+    var red = {color: "#F9264C", words: ['Email', 'Python', 'Front-end', 'Computer', 'Science', '*', 'Vue2Js', 'Ruby', 'on', 'Rails', 'Js/ES6']};
+    var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'June','Aug', 'Dec', '2012', '2014', '2016', '2017', '2018', 'present']};
 
     $('.bracket-wrapper').each(function() {
 
@@ -427,13 +401,13 @@ $(window).on('load', function() {
             var ColorizedPhrase = "";
 
             for (var i=0; i < PhraseLength; i++) {
-                
+
                 var word = Phrase[i];
 
                 if (word == '_') {ColorizedPhrase += " ";}
                 else if (white["words"].includes(word)) {ColorizedPhrase += word.fontcolor(white["color"]);}
                 else if (brown["words"].includes(word)) {ColorizedPhrase += word.fontcolor(brown["color"]);}
-                else if (green["words"].includes(word)) {ColorizedPhrase += word.fontcolor(green["color"]);} 
+                else if (green["words"].includes(word)) {ColorizedPhrase += word.fontcolor(green["color"]);}
                 else if (red["words"].includes(word)) {ColorizedPhrase += word.fontcolor(red["color"]);}
                 else {ColorizedPhrase += word.fontcolor("#5CD9EF");}
 
@@ -445,12 +419,12 @@ $(window).on('load', function() {
     });
     // Scroll to Sections according to href tag.
     $('a[href*="#"]:not([href="#"])').click(function(e) {
-        
+
         e.preventDefault();
         e.stopPropagation();
 
         if (TriObj.clickable) {
-            
+
             var section = ($(this).attr('href'));
 
             if ($(document).scrollTop() == $(section).offset().top - HeaderHeight) {
@@ -470,13 +444,13 @@ $(window).on('load', function() {
                     duration: TriObj.scatterDuration,
                     delay: delay,
                     offset: $(section).offset().top - (HeaderHeight*2),
-                    easing: 'ease-in-out', 
+                    easing: 'ease-in-out',
                     complete: function () {
                         TriObj.clickable = true;
                     }
                 });
             }
-        } else {}//clickpropagation 
+        } else {}//clickpropagation
     });
     $('html').show();
     // Check resizing event => adjust window height

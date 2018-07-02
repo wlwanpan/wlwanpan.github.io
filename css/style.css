@@ -208,7 +208,7 @@ div {
 }
 p {
 	font-family: 'Ubuntu Mono', monospace;
-	font-size: 15px !important;
+	font-size: 16px !important;
 	line-height: 170%;
 
 }
@@ -216,7 +216,7 @@ i {
 	cursor: pointer;
 }
 section {
-	
+
 	display: table-cell;
 
 }
@@ -260,7 +260,7 @@ path {
 	width: 10%;
 	height: 18%;
 	min-width: 50px;
-	min-height: 50px; 
+	min-height: 50px;
 	bottom: -1px;
 	left: 5%;
 }
@@ -282,7 +282,7 @@ path {
 
 	position: absolute;
 	min-width: 50px;
-	min-height: 50px; 
+	min-height: 50px;
 	width: 10%;
 	height: 18%;
 	z-index: 999;
@@ -291,7 +291,7 @@ path {
 #logo-svg-box {
 	overflow: inherit;
 	height: 100%;
-	
+
 }
 #fetus {
 	fill: #000000;
@@ -309,7 +309,7 @@ path {
     animation-direction: alternate-reverse;
 }
 .head-animate {
-    
+
     -webkit-transform-origin: 40px 30px;
     animation-name: headtilt;
     animation-duration: 5s;
@@ -344,18 +344,18 @@ path {
 }
 .main-icon:hover {
 
-    -webkit-animation-name: icon-pulse; 
-    animation-duration: 500ms; 
+    -webkit-animation-name: icon-pulse;
+    animation-duration: 500ms;
 
 }
 #icon-container {
-	
+
 	width: 90%;
 	margin: 0 auto;
 	height: 50px;
 	-webkit-transition: border 800ms;
 	-moz-transition: border 800ms;
-    transition: border 800ms;
+  transition: border 800ms;
 	border-bottom: 2px solid black;
 
 }
@@ -364,7 +364,7 @@ path {
 	-webkit-transition: color 800ms;
 	-moz-transition: color 800ms;
 	transition: color 800ms;
-    color: #000000;
+  color: #000000;
 
 }
 .icon {
@@ -381,7 +381,7 @@ path {
 	bottom: 0%;
 	background: #191919;
 	width: 100%;
-	height: 50px;
+	height: 60px;
 
 }
 #footer-content {
@@ -389,13 +389,13 @@ path {
 	width: 90%;
 	margin: 0 auto;
 	text-align: center;
-	height: 48px;
-	border-top: 2px solid white;
+	height: 58px;
+  border-top: 2px solid white;
 }
 #footer-content p {
 
 	display: inline-block;
-	margin-top: 10px;
+	margin-top: 16px;
 	color: #ffffff;
 }
 
@@ -418,8 +418,8 @@ path {
 }
 .footer-icon:hover {
 
-    -webkit-animation-name: footer-pulse; 
-    animation-duration: 500ms; 
+    -webkit-animation-name: footer-pulse;
+    animation-duration: 500ms;
 
 }
 /*
@@ -449,7 +449,7 @@ path {
 	font-family: 'Merriweather Sans', sans-serif;
 	opacity: 0.9;
 	font-color: #191919;
- 
+
 }
 #intro-name {
 
@@ -499,20 +499,21 @@ path {
 	color: #191919;
 }
 .section-wrapper {
-	
+
 	display:inline-block;
 	position: relative;
 	padding-top: 50px;
 	padding-bottom: 50px;
+	margin-bottom: -3px;
 	width: 100%;
 
 }
 .section-wrapper h1{
 	-webkit-transition: opacity 1s;
-    -moz-transition: opacity 1s;
+  -moz-transition: opacity 1s;
 	transition: opacity 1s;
 	font-family: 'Ubuntu Mono', monospace;
-	font-size: 2em;
+	font-size: 2.2em;
 	opacity: 0;
 }
 .section-inner{
@@ -522,7 +523,7 @@ path {
 
 }
 .left-container {
-	
+
 	margin-left: 5%;
 	width: 43%;
 	float: left;
@@ -530,7 +531,7 @@ path {
 
 }
 .right-container {
-	
+
 	float: right;
 	margin-right: 5%;
 	width: 43%;
@@ -570,7 +571,7 @@ path {
 	display: inline-block;
 }
 .bracket-wrapper p{
-	display: inline; 
+	display: inline;
 }
 .bracket-arrow {
 	margin-top: 0%;
@@ -580,7 +581,7 @@ path {
 	margin-left: 20px;
 
 }
-.closing-bracket-p { 
+.closing-bracket-p {
 
 	-webkit-transition: opacity 200ms 200ms;
 	-moz-transition: opacity 200ms 200ms;
@@ -670,7 +671,7 @@ path {
 
 }
 .logo-svg {
-	
+
 	display: block;
 
 }
