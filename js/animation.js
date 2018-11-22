@@ -389,8 +389,8 @@ $(window).on('load', function() {
     // Coloring Resume-section
     var white = {color: "#ffffff", words: [';',':', ',', 'and', '{', '}', '.', '(', ')', '..']};
     var green = {color: "#A6E22E", words: ['Skill', 'Education', 'Experience', 'Certification', 'Awards']};
-    var red = {color: "#F9264C", words: ['Email', 'Python', 'Front-end', 'Computer', 'Science', '*', 'Vue2Js', 'Ruby', 'on', 'Rails', 'Js/ES6']};
-    var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'June','Aug', 'Dec', '2012', '2014', '2016', '2017', '2018', 'present']};
+    var red = {color: "#F9264C", words: ['Email', 'Python', 'Go', 'Front-end', 'Computer', 'Science', '*', 'VueJs', 'Javascript']};
+    var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'June', 'Aug', 'Dec', 'Nov', '2012', '2014', '2016', '2017', '2018', 'present']};
 
     $('.bracket-wrapper').each(function() {
 
