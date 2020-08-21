@@ -371,6 +371,13 @@ path {
 	margin-left: 7px;
 	float: right;
 }
+
+.header-icon__sep {
+	width: 2px;
+    height: 75%;
+    border-radius: 2px;
+    background: black;
+}
 /* ----- SECTION FOOTER -----*/
 
 #footer {
