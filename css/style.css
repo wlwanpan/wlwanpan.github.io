@@ -476,14 +476,12 @@ path {
 
 }
 #command-container {
-
 	position: relative;
-	/*text-align: center;*/
 	margin: 0 auto;
 	top: 37%;
 	height: 15px;
 	width: 45%;
-
+	max-width: 40rem;
 }
 #command-container h1 {
 	font-family: 'Ubuntu Mono', monospace;
@@ -524,6 +522,7 @@ path {
 .section-inner{
 	margin: 0 auto;
 	width: 90%;
+	max-width: 80rem;
 }
 .left-container {
 	margin-left: 5%;
