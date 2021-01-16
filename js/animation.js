@@ -390,7 +390,7 @@ $(window).on('load', function() {
     var white = {color: "#ffffff", words: [';',':', ',', 'and', '{', '}', '.', '(', ')', '..']};
     var green = {color: "#A6E22E", words: ['Skill', 'Education', 'Experience', 'Certification', 'Awards']};
     var red = {color: "#F9264C", words: ['Email', 'Python', 'Go', 'Front-end', 'Computer', 'Science', '*', 'VueJs', 'Javascript']};
-    var brown = {color: "#AC6A22", words: ['-', '\'','May', 'Feb', 'Sept', 'Apr', 'June', 'Aug', 'Dec', 'Nov', '2012', '2014', '2016', '2017', '2018', 'present']};
+    var brown = {color: "#AC6A22", words: ['-', '\'', 'Jan', 'May', 'Feb', 'Sept', 'Apr', 'June', 'Aug', 'Dec', 'Nov', '2012', '2014', '2016', '2017', '2018', '2019', '2020', '2021', 'present']};
 
     $('.bracket-wrapper').each(function() {
 
